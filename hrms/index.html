@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inventory management system - IMS</title>
+	<script type="text/javascript" src="js/script.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="res/icon.png">
+	<link rel="stylesheet" type="text/css" href="Styles/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="#Home" class="navbar-brand">HRMS</a>
+				<button class="navbar-toggle" data-toggle="collapse" data-target="#navHeaderCollapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="navHeaderCollapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#Home" id="Home-1">Home</a></li>
+					<li><a href="#offerings" id="Our-offerings">Our offerings</a></li>
+					<li><a href="#" id="about">About</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><button class="btn btn-primary btn-align" onclick="getInView()">Login/Sign Up</button></li>
+				</ul>
+			</div>
+		</div>
+	</nav>	
+	<div>
+		<section id="Home">
+			<div class="jumbotron" id="jumbotron">
+				<h1 class="center" id="jumbo-h1">Inventory management system</h1>
+				<h2 class="center" id="jumbo-h2">Hotels | Resturants | Bars</h2>
+			</div>
+		</section>
+	</div>
+	<div class="offerings container">
+		<section id="offerings">
+			<h2 class="page-header center text" id="offerings-1">OUR OFFERINGS</h2>
+			<div class="container col-xs-8 offerings-2">
+				<h3 class="offer-text">We Specialize in the inventory management systems, useful for Hotels, Resturants and Bars. The key features of our Hotel resorce management system (HRMS) include but not limited to Stock report, Alerts on less stock, sales analytics and daily revenue. We represent this data in beautiful and insightful dashboard. This will ascend your business to new heights.</h3>
+			</div>
+			<div class="col-xs-4 center">
+				<h3 class="offer-text">images will come here</h3>
+			</div>
+		</section>
+	</div>
+	<div class="seperator">
+		<div class="col-xs-offset-3 col-xs-2 text">
+			<h4>HOTELS</h4>
+		</div>
+		<div class="col-xs-2 text">
+			<h4>BARS</h4>
+		</div>
+		<div class="col-xs-2 text">
+			<h4>RESTURANTS</h4>
+		</div>
+	</div>
+	<div class="login-signup container-fluid">
+		<section id="login">
+			<div class="col-xs-6 diff1 center">
+				<h2 class="page-header center text">Sign up for the world of insights</h2>
+				<h3 class="center text">Sign up</h3>
+				
+				<!-- sign up form -->
+				<form id="signUpForm" class="form-horizantal center">
+					<div class="form-group">
+						<div class="col-xs-offset-2 col-xs-8">
+							<input class = "form-control" type="text" name="firstname" id="fname" placeholder="First Name">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-offset-2 col-xs-8">
+							<input class = "form-control" type="text" name="firstname" id="lname" placeholder="Last Name">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-offset-2 col-xs-8">
+							<input class = "form-control" type="text" name="Establishment name" id="ename" placeholder="Establishment Name">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-offset-2 col-xs-8">
+							<input class = "form-control" type="email" name="Establishment name" id="ename" placeholder="Email id">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-offset-2 col-xs-8">
+							<input class = "form-control" type="Password" name="Password" id="pword" placeholder="password">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-offset-2 col-xs-8">
+							<input class = "form-control" type="password" name="password2" id="password2" placeholder="re-enter password">
+						</div>
+					</div>
+					<div class="col-xs-offset-3 col-xs-6">
+						<input type="button" name="submit" value="SIGN UP" class="btn btn-primary">
+					</div>
+				</form>
+			</div>
+
+			<!-- Login form -->
+			<div class="col-xs-6 diff2 center">
+				<h2 class="page-header center text">Already have an account?</h2>
+				<h3 class="center text">Login</h3>
+				<form id ="loginForm" class="form-horizantal center" >
+					<div class="form-group">
+						<div class="col-xs-offset-2 col-xs-8">
+							<input type="text" name="email" placeholder="Email" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-offset-2 col-xs-8">
+							<input type="password" name="password" placeholder="password" class="form-control">
+						</div>
+					</div>
+					<div class="col-xs-offset-3 col-xs-6">
+						<input type="button" name="submit" value="LOGIN" class="btn btn-primary">
+					</div>
+				</form>
+			</div>
+		</section>
+	</div>
+
+	<!-- seperator -->
+	<div class="seperator" id="form-sep">
+		<div class="col-xs-offset-1 col-xs-2 text">
+			<h4>SALES REPORT</h4>
+		</div>
+		<div class="col-xs-2 text">
+			<h4>EASY UI</h4>
+		</div>
+		<div class="col-xs-2 text">
+			<h4>MANAGE INVENTORY</h4>
+		</div>
+		<div class="col-xs-2 text">
+			<h4>ANALYTICS</h4>
+		</div>
+		<div class="col-xs-2 text">
+			<h4>STOCK ALERTS</h4>
+		</div>
+	</div>
+</body>
+</html>

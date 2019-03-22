@@ -1,0 +1,176 @@
+.Image
+{
+	background-color: #c1cdc1;
+	padding-top: 6em;
+	padding-bottom: 4em;
+}
+
+#flag
+{
+	display: block;
+	border-radius: 50%;
+	border: 3px solid white;
+	height: 160px;
+	width: 160px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+}
+
+#facebook
+{
+	border-radius: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 7px;
+	padding-right: 7px;
+	height: 30px;
+	width: 43px;
+}
+
+.name
+{
+	font-size: 20px;
+	color: #838b83;
+	text-align: center;
+	font-weight: normal;
+	font-family: 'PT Sans', sans-serif;
+}
+
+.designation
+{
+	font-size: 14px;
+	color: #838b83;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.socialMedia
+{
+	display: block;
+	text-align: center;
+	padding-top: 3px;
+}
+
+.content-pane
+{
+	text-align: center !important;
+	letter-spacing: 2px;
+	font-size: 17px;
+}
+
+#btn-pane
+{
+	text-align: center;
+	margin-top: 10px;
+}
+
+.left-container
+{
+	background-color: #d3d3d3 !important;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-left: 2px solid white;
+}
+
+.right-container
+{
+	/*background-color: black !important;*/
+	padding-top: 6px;
+	height: 270px;
+	margin-top: 0px;
+	border-left: 2px solid white;
+}
+
+#skills
+{
+	/*background-color: #EAEDED;*/
+	background-color: #c1cdc1;
+}
+
+.logos
+{
+	height: 175px;
+	width: 310px;
+	padding-left: 20px;
+}
+
+.contact
+{
+	margin-bottom: 3px;
+}
+
+#javascript
+{
+	padding-top: 27px;
+}
+
+.java
+{
+	max-width: 175px;
+	max-height: 310px;
+	padding-left: 75px;
+}
+
+.footer
+{
+	height: 40px;
+	background-color: #283747;
+}
+
+#signature
+{
+	color: #D5DBDB;
+	padding-left: 76%;
+	padding-top: 12px;
+
+}
+
+#affliate_site
+{
+	color: #D5DBDB;
+	/*padding-left: 6px;*/
+	/*padding-top: 10px;*/
+}
+
+.freelancer
+{
+	height: 400px;
+	margin-left: 53px;
+	margin-right: 53px;
+	background-color: #ffffff !important;
+}
+
+.freelancer-mouseenter
+{
+	height: 400px;
+	margin-left: 53px;
+	margin-right: 53px;
+	background-color: #fffff0 !important;
+	text-align: left !important;
+}
+
+.address-inv
+{
+	display: none;
+}
+
+.links
+{
+	margin-left: 70px;
+}
+
+.links-color
+{
+	background-color: #c1cdc1 !important;
+	padding-top: 20px;
+	margin-bottom: 10px;
+	margin-left:auto !important;
+	margin-right: auto !important;
+}
+
+#data-image
+{
+	max-height: 300px;
+	/*max-width: 20px;*/
+}

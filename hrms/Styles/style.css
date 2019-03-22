@@ -1,0 +1,147 @@
+/*This is the css file*/
+.diff1
+{
+	border-right: 1px solid black;
+}
+
+.diff2
+{
+	border-left: 1px solid black;
+	height: 415px;
+}
+
+
+.center
+{
+	text-align: center !important;
+}
+
+#jumbo-h1 
+{	
+	display: block;
+	position: absolute;
+	color: #fff;
+	top: 50% ;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.jumbotron
+{
+	/*background-image: url("res/jumbotron-bg.jpeg");*/
+	margin-top: 50px;
+	background-image: url("https://blogmedia.evbstatic.com/wp-content/uploads/blog/2016/03/29095521/Bar-inventory-spreadsheet-desktop.jpg");
+	height: 550px;
+	margin-bottom: 1px !important;
+}
+
+
+#jumbotron
+{
+	display: flex !important;
+}
+
+
+#jumbo-h2
+{	
+	display: inherit;
+	position: absolute;
+	color: #fff;
+	top: 65% ;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.btn-align
+{
+	margin-top: 10px;
+	margin-right: 5px;
+}
+
+.offerings-2
+{
+	letter-spacing: 1px;
+	word-spacing: 2px;
+}
+
+.navbar-default {
+	background-color: #F8F8F8 !important;
+	border-color: #E7E7E7 !important;
+}
+
+.login-signup
+{
+	margin-top: 40px !important;
+}
+
+.signUpForm
+{
+	text-align: center;
+	display: inline-block !important;
+}
+
+input
+{
+	margin-top: 3px;
+	margin-bottom: 2px;
+	text-align: center;
+}
+
+
+.my-center
+{
+	position: absolute !important;
+	top: 50%
+	left:50%;
+	transform: translate(-50%, -50%);
+}
+
+.features-wrapper
+{
+	background-color: #000 !important;
+	border-top: 1px dotted black;
+	margin-top: 10px;
+	text-align: center;
+}
+
+.feature-text
+{
+	display: inline-block;
+	float: left;
+	padding-right: 50px;
+	padding-left: 20px;
+	border-right: 1px  grey;
+}
+
+input[type="text"]
+{
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+}
+
+.seperator
+{
+	height: 60px;
+	max-height: 100px;
+	background-color: #DFDBF9;
+}
+
+#form-sep
+{
+	margin-top: 2px;
+}
+
+.text
+{
+	margin-top: 10px;
+	margin-bottom: 20px !important;
+	text-align: center;
+	font-family: 'Encode Sans Expanded', sans-serif;
+	flex-wrap: wrap;
+	overflow: hidden;
+}
+
+.offer-text
+{
+	font-family: 'Dosis', sans-serif;
+}
