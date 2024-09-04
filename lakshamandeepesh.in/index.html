@@ -480,8 +480,6 @@
                                       CONTACT SECTION
                                       =========================== -->
                                       <section class="text-center contact-wrap" id="contact">
-                                        <!-- To Top Button -->
-                                        <!-- <a href="index.html#top" class="up-btn"><i class="fa fa-chevron-up"></i></a> -->
                                         <div class="container">
                                           <!-- Headline -->
                                           <div class="row">
@@ -513,33 +511,31 @@
                                               </div>
                                             </div>
                                             <div class="row">
-                                              <!-- Google Maps (Change your Settings below) -->
                                               <div class="col-md-3">
-                                                <!-- <div id="googlemaps"></div> -->
                                               </div>
                                               <!-- Contact Form -->
                                               <div class="col-md-6 contact">
-                                                <form role="form">
+                                                <form id="contactForm" role="form">
                                                   <!-- Name -->
                                                   <div class="row">
                                                     <div class="col-md-6">
-                                                      <!-- E-Mail -->
+                                                      <!-- Name -->
                                                       <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Your name">
+                                                        <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required>
                                                       </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                      <!-- Phone Number -->
+                                                      <!-- Email -->
                                                       <div class="form-group">
-                                                        <input type="email" class="form-control" placeholder="Email address">
+                                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email address" required>
                                                       </div>
                                                     </div>
                                                   </div>
                                                   <!-- Message Area -->
                                                   <div class="form-group">
-                                                    <textarea class="form-control" placeholder="Write you message here..." style="height:232px;"></textarea>
+                                                    <textarea class="form-control" id="message" name="message" placeholder="Write you message here..." style="height:232px;" required></textarea>
                                                   </div>
-                                                  <!-- Subtmit Button -->
+                                                  <!-- Submit Button -->
                                                   <button type="submit" class="btn btn-send">
                                                     Send message
                                                   </button>
@@ -548,6 +544,21 @@
                                             </div>
                                             <br>
                                           </section>
+                                          <script>
+                                            document.getElementById('contactForm').addEventListener('submit', function(event) {
+                                              event.preventDefault();
+                                              
+                                              var name = document.getElementById('name').value;
+                                              var email = document.getElementById('email').value;
+                                              var message = document.getElementById('message').value;
+                                              
+                                              var mailtoLink = 'mailto:pldeepesh@gmail.com'
+                                                + '?subject=' + encodeURIComponent('New message from ' + name)
+                                                + '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+                                              
+                                              window.location.href = mailtoLink;
+                                            });
+                                          </script>
                                           <!-- ==========================
                                             CONTACT SECTION END
                                             =========================== -->
