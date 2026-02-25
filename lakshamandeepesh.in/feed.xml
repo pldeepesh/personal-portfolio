@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Lakshmana Deepesh Blog</title>
+  <link href="https://www.lakshmanadeepesh.in/feed.xml" rel="self"/>
+  <link href="https://www.lakshmanadeepesh.in/blog/"/>
+  <updated>2026-02-25T10:00:56.909Z</updated>
+  <id>https://www.lakshmanadeepesh.in/</id>
+  <entry>
+    <title>hello-world</title>
+    <link href="https://www.lakshmanadeepesh.in/blog/hello-world/"/>
+    <id>https://www.lakshmanadeepesh.in/blog/hello-world/</id>
+    <updated>2026-02-25T10:00:56.909Z</updated>
+  </entry>
+  <entry>
+    <title>blog</title>
+    <link href="https://www.lakshmanadeepesh.in/blog/"/>
+    <id>https://www.lakshmanadeepesh.in/blog/</id>
+    <updated>2026-02-25T10:00:56.909Z</updated>
+  </entry>
+  <entry>
+    <title>seo-metadata-checklist</title>
+    <link href="https://www.lakshmanadeepesh.in/blog/seo-metadata-checklist/"/>
+    <id>https://www.lakshmanadeepesh.in/blog/seo-metadata-checklist/</id>
+    <updated>2026-02-25T10:00:56.909Z</updated>
+  </entry>
+  <entry>
+    <title>technical-seo-basics</title>
+    <link href="https://www.lakshmanadeepesh.in/blog/technical-seo-basics/"/>
+    <id>https://www.lakshmanadeepesh.in/blog/technical-seo-basics/</id>
+    <updated>2026-02-25T10:00:56.909Z</updated>
+  </entry>
+</feed>
