@@ -86,8 +86,16 @@
     ]
   }
   </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7TBHGYDYW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-E7TBHGYDYW');
+  </script>
 </head>
-<body>
+<body data-page-type="blog_post" data-content-id="{{slug}}" data-author="{{authorName}}" data-publish-date="{{publishedAt}}" data-topic-cluster="{{categorySlug}}">
   <header>
     <a href="/blog/">Blog</a>
   </header>
@@ -122,5 +130,6 @@
       </ul>
     </section>
   </main>
+  <script src="/js/analytics.js"></script>
 </body>
 </html>
