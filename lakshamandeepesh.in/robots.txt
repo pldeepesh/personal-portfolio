@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.lakshmanadeepesh.in/sitemap.xml
+Feed: https://www.lakshmanadeepesh.in/feed.xml

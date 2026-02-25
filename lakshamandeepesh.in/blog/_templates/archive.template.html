@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>{{metaTitle}}</title>
+  <meta name="description" content="{{metaDescription}}" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="{{canonicalUrl}}" />
+
+  <meta property="og:site_name" content="{{siteName}}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{metaTitle}}" />
+  <meta property="og:description" content="{{metaDescription}}" />
+  <meta property="og:url" content="{{canonicalUrl}}" />
+  <meta property="og:image" content="{{ogImage}}" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{metaTitle}}" />
+  <meta name="twitter:description" content="{{metaDescription}}" />
+  <meta name="twitter:image" content="{{ogImage}}" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "{{siteUrl}}#website",
+        "url": "{{siteUrl}}",
+        "name": "{{siteName}}",
+        "description": "{{siteDescription}}"
+      },
+      {
+        "@type": "{{publisherType}}",
+        "@id": "{{publisherUrl}}#publisher",
+        "name": "{{publisherName}}",
+        "url": "{{publisherUrl}}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{publisherLogo}}"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Blog",
+            "item": "{{siteUrl}}/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{archiveTitle}}",
+            "item": "{{canonicalUrl}}"
+          }
+        ]
+      },
+      {
+        "@type": "CollectionPage",
+        "name": "{{archiveTitle}}",
+        "description": "{{metaDescription}}",
+        "url": "{{canonicalUrl}}"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <a href="/blog/">Blog</a>
+  </header>
+
+  <main>
+    <h1>{{archiveTitle}}</h1>
+    <p>{{archiveDescription}}</p>
+    <ul>
+      {{archiveItems}}
+    </ul>
+  </main>
+</body>
+</html>
