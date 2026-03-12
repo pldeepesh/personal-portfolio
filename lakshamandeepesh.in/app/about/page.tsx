@@ -49,9 +49,9 @@ const timeline = [
   },
   {
     period: 'Now',
-    title: 'Editorial platform and product direction',
+    title: 'AI systems and data governance into the future.',
     description:
-      'Evolving this website into an authority content engine and micro-SaaS launch base focused on growth analytics workflows.'
+      'Evolving into this new world of AI focused on growth analytics workflows.'
   }
 ];
 
