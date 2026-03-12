@@ -3,30 +3,86 @@
   <title>Lakshmana Deepesh Blog</title>
   <link href="https://www.lakshmanadeepesh.in/feed.xml" rel="self"/>
   <link href="https://www.lakshmanadeepesh.in/blog/"/>
-  <updated>2026-02-25T10:00:56.909Z</updated>
-  <id>https://www.lakshmanadeepesh.in/</id>
+  <updated>2026-03-12T19:11:10.546Z</updated>
+  <id>https://www.lakshmanadeepesh.in/blog/</id>
   <entry>
-    <title>hello-world</title>
-    <link href="https://www.lakshmanadeepesh.in/blog/hello-world/"/>
-    <id>https://www.lakshmanadeepesh.in/blog/hello-world/</id>
-    <updated>2026-02-25T10:00:56.909Z</updated>
+    <title>A/B Testing Pitfalls: Statistical and Operational</title>
+    <link href="https://www.lakshmanadeepesh.in/blog/ab-testing-pitfalls-operational/"/>
+    <id>https://www.lakshmanadeepesh.in/blog/ab-testing-pitfalls-operational/</id>
+    <summary>The most common A/B testing mistakes across statistics, implementation, and stakeholder interpretation, with a practical prevention checklist.</summary>
+    <published>2026-04-08T00:00:00Z</published>
+    <updated>2026-04-08T00:00:00Z</updated>
   </entry>
   <entry>
-    <title>blog</title>
-    <link href="https://www.lakshmanadeepesh.in/blog/"/>
-    <id>https://www.lakshmanadeepesh.in/blog/</id>
-    <updated>2026-02-25T10:00:56.909Z</updated>
+    <title>Attribution in Imperfect Data Environments</title>
+    <link href="https://www.lakshmanadeepesh.in/blog/attribution-in-imperfect-data/"/>
+    <id>https://www.lakshmanadeepesh.in/blog/attribution-in-imperfect-data/</id>
+    <summary>A practical attribution approach for teams dealing with partial tracking, privacy constraints, and measurement gaps across channels.</summary>
+    <published>2026-04-01T00:00:00Z</published>
+    <updated>2026-04-01T00:00:00Z</updated>
   </entry>
   <entry>
-    <title>seo-metadata-checklist</title>
+    <title>Pricing Elasticity Experiments Without Destroying Trust</title>
+    <link href="https://www.lakshmanadeepesh.in/blog/pricing-elasticity-experiments/"/>
+    <id>https://www.lakshmanadeepesh.in/blog/pricing-elasticity-experiments/</id>
+    <summary>How to run pricing experiments with proper risk guardrails so you can learn elasticity without harming retention, trust, or perceived fairness.</summary>
+    <published>2026-03-25T00:00:00Z</published>
+    <updated>2026-03-25T00:00:00Z</updated>
+  </entry>
+  <entry>
+    <title>Retention Diagnostics Scorecard for Product and Growth Teams</title>
+    <link href="https://www.lakshmanadeepesh.in/blog/retention-diagnostics-scorecard/"/>
+    <id>https://www.lakshmanadeepesh.in/blog/retention-diagnostics-scorecard/</id>
+    <summary>A practical retention scorecard to identify whether your growth loop is sustainable, and where churn pressure actually starts.</summary>
+    <published>2026-03-18T00:00:00Z</published>
+    <updated>2026-03-18T00:00:00Z</updated>
+  </entry>
+  <entry>
+    <title>Activation Metrics That Matter: Beyond Vanity Conversion</title>
+    <link href="https://www.lakshmanadeepesh.in/blog/activation-metrics-that-matter/"/>
+    <id>https://www.lakshmanadeepesh.in/blog/activation-metrics-that-matter/</id>
+    <summary>How to define activation metrics that predict durable value, and avoid optimizing for shallow conversion events that do not retain.</summary>
+    <published>2026-03-11T00:00:00Z</published>
+    <updated>2026-03-11T00:00:00Z</updated>
+  </entry>
+  <entry>
+    <title>Acquisition Funnel Diagnostics: Find the Real Bottleneck</title>
+    <link href="https://www.lakshmanadeepesh.in/blog/acquisition-funnel-diagnostics/"/>
+    <id>https://www.lakshmanadeepesh.in/blog/acquisition-funnel-diagnostics/</id>
+    <summary>A framework for diagnosing acquisition funnel issues without mistaking channel mix shifts for product or conversion problems.</summary>
+    <published>2026-03-04T00:00:00Z</published>
+    <updated>2026-03-04T00:00:00Z</updated>
+  </entry>
+  <entry>
+    <title>Experimentation Framework: From Hypothesis to Decision</title>
+    <link href="https://www.lakshmanadeepesh.in/blog/experimentation-framework-hypothesis-to-decision/"/>
+    <id>https://www.lakshmanadeepesh.in/blog/experimentation-framework-hypothesis-to-decision/</id>
+    <summary>A practical system for running product and growth experiments end-to-end, from hypothesis quality to decision confidence and rollout discipline.</summary>
+    <published>2026-03-03T00:00:00Z</published>
+    <updated>2026-03-03T00:00:00Z</updated>
+  </entry>
+  <entry>
+    <title>SEO Metadata Checklist: Titles, OG, and Schema</title>
     <link href="https://www.lakshmanadeepesh.in/blog/seo-metadata-checklist/"/>
     <id>https://www.lakshmanadeepesh.in/blog/seo-metadata-checklist/</id>
-    <updated>2026-02-25T10:00:56.909Z</updated>
+    <summary>A practical metadata checklist for article pages and archive routes, including title systems, Open Graph fields, and schema implementation details.</summary>
+    <published>2026-02-27T00:00:00Z</published>
+    <updated>2026-03-03T00:00:00Z</updated>
   </entry>
   <entry>
-    <title>technical-seo-basics</title>
+    <title>Technical SEO Basics for a Clean, Indexable Site</title>
     <link href="https://www.lakshmanadeepesh.in/blog/technical-seo-basics/"/>
     <id>https://www.lakshmanadeepesh.in/blog/technical-seo-basics/</id>
-    <updated>2026-02-25T10:00:56.909Z</updated>
+    <summary>The technical SEO baseline this website uses: canonical discipline, metadata consistency, structured data, and indexation hygiene.</summary>
+    <published>2026-02-26T00:00:00Z</published>
+    <updated>2026-03-03T00:00:00Z</updated>
+  </entry>
+  <entry>
+    <title>Hello World: Why This Blog Exists</title>
+    <link href="https://www.lakshmanadeepesh.in/blog/hello-world/"/>
+    <id>https://www.lakshmanadeepesh.in/blog/hello-world/</id>
+    <summary>The editorial mission behind this blog, who it serves, and how each article is designed to be implementation-ready for analytics and growth teams.</summary>
+    <published>2026-02-25T00:00:00Z</published>
+    <updated>2026-03-03T00:00:00Z</updated>
   </entry>
 </feed>
