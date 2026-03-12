@@ -1,0 +1,59 @@
+---
+title: "A/B Testing Pitfalls: Statistical and Operational"
+slug: "ab-testing-pitfalls-operational"
+excerpt: "The most common A/B testing mistakes across statistics, implementation, and stakeholder interpretation, with a practical prevention checklist."
+publishedAt: "2026-04-08"
+updatedAt: "2026-04-08"
+author:
+  name: "Lakshmana Deepesh Reddy"
+  slug: "deepesh-reddy"
+  role: "Data Scientist and Growth Analytics Leader"
+  bio: "Builds decision systems for growth and product teams."
+topic: "experimentation-growth-analytics"
+tags:
+  - "a/b testing"
+  - "statistics"
+  - "operations"
+coverImage: "/img/blog2.png"
+ogImage: "/img/header-bg-og.jpg"
+canonicalUrl: "https://www.lakshmanadeepesh.in/blog/ab-testing-pitfalls-operational/"
+readingTimeMinutes: 11
+draft: false
+featured: false
+relatedSlugs:
+  - "experimentation-framework-hypothesis-to-decision"
+  - "activation-metrics-that-matter"
+---
+A/B testing failures usually come from process breakdowns, not formulas. Here are the pitfalls that repeatedly cost teams speed and trust.
+
+## Pitfall 1: Peeking and early stopping
+Stopping tests when early uplift appears inflates false positives. Predefine minimum sample size and decision windows.
+
+## Pitfall 2: Metric switching mid-test
+Changing primary metrics during execution breaks validity. Lock metric hierarchy before launch.
+
+## Pitfall 3: Instrumentation drift
+Event schema changes during test windows can invalidate outcomes. Freeze instrumentation unless absolutely critical.
+
+## Pitfall 4: Underpowered tests
+Tiny experiments with low expected effect size rarely produce actionable conclusions. Match test scope to detectable effect.
+
+## Pitfall 5: Stakeholder over-interpretation
+Treating every statistically significant movement as a rollout trigger creates noise. Evaluate practical effect size and guardrails.
+
+## Operational prevention checklist
+- Hypothesis quality reviewed
+- Metrics frozen and documented
+- QA pass completed
+- Decision memo template pre-created
+- Guardrails monitored daily
+
+## FAQ
+### Is 95% confidence always required?
+Not always. Confidence thresholds should reflect decision risk and experiment context.
+
+### Should we test everything?
+No. Prioritize tests with clear decision impact and measurable upside.
+
+### What is the fastest way to improve experiment quality?
+Standardize pre-launch checklists and post-test decision memos.

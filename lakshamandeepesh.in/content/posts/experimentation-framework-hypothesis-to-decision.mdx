@@ -1,0 +1,88 @@
+---
+title: "Experimentation Framework: From Hypothesis to Decision"
+slug: "experimentation-framework-hypothesis-to-decision"
+excerpt: "A practical system for running product and growth experiments end-to-end, from hypothesis quality to decision confidence and rollout discipline."
+publishedAt: "2026-03-03"
+updatedAt: "2026-03-03"
+author:
+  name: "Lakshmana Deepesh Reddy"
+  slug: "deepesh-reddy"
+  role: "Data Scientist and Growth Analytics Leader"
+  bio: "Builds decision systems for growth and product teams."
+topic: "experimentation-growth-analytics"
+tags:
+  - "experimentation"
+  - "decision-making"
+  - "growth analytics"
+coverImage: "/img/stock/topics-collaboration.jpg"
+ogImage: "/img/header-bg-og.jpg"
+canonicalUrl: "https://www.lakshmanadeepesh.in/blog/experimentation-framework-hypothesis-to-decision/"
+readingTimeMinutes: 12
+draft: false
+featured: true
+relatedSlugs:
+  - "ab-testing-pitfalls-operational"
+  - "acquisition-funnel-diagnostics"
+  - "activation-metrics-that-matter"
+---
+Most teams do not fail at experimentation because they lack tools. They fail because they treat experiments as isolated events instead of a decision system. This guide is the operating model I use for turning experimentation into a repeatable growth capability.
+
+## 1) Start with a decision, not a dashboard
+A valid experiment begins by naming the decision it is supposed to unlock. Before writing hypotheses, define:
+
+- What decision will be made if this test succeeds?
+- What decision will be made if it fails?
+- What is the cost of a false positive and false negative?
+
+If none of these are clear, the experiment is probably just analysis theater.
+
+## 2) Upgrade hypothesis quality
+A useful hypothesis has four parts:
+
+1. **Change**: what exactly are we changing?
+2. **Audience**: who is affected?
+3. **Mechanism**: why should this change move behavior?
+4. **Expected effect**: which primary metric should move, and by how much?
+
+This structure prevents vague hypotheses like "improve onboarding" and forces testable intent.
+
+## 3) Define success and guardrails together
+Do not run a test with only a primary metric. Add guardrails for:
+
+- Retention impact
+- Support burden
+- Revenue quality
+- Latency/performance regressions
+
+A test can "win" on click-through and still hurt long-term value. Guardrails protect decision quality.
+
+## 4) Instrumentation QA is a first-class phase
+Before launch, validate event definitions, funnel continuity, and attribution logic. I use a short QA checklist:
+
+- Event names and properties are stable
+- Session/user identity stitching is correct
+- Drop-off between expected steps is plausible
+- Metric baselines match historical windows
+
+## 5) Interpret outcomes with confidence bands, not narratives
+Post-test reviews should include:
+
+- Effect size and confidence interval
+- Segment-level variance
+- Novelty effects over time
+- Practical significance vs statistical significance
+
+A result is only actionable if the effect is both statistically credible and operationally meaningful.
+
+## 6) Finish with decision memos
+Every experiment should end with a one-page memo: context, hypothesis, metrics, outcome, and decision. This creates reusable organizational memory and prevents rerunning the same low-value tests.
+
+## FAQ
+### How many experiments should a team run each month?
+Throughput targets depend on team maturity, but consistency matters more than volume. Start with 4-6 meaningful experiments and build quality discipline first.
+
+### Should every test target revenue?
+No. Early-funnel and behavior-shaping experiments are valid if connected to a clear decision chain.
+
+### What is the biggest anti-pattern?
+Treating statistically significant movement as a final decision without checking practical impact and guardrails.
