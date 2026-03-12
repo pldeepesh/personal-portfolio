@@ -105,3 +105,11 @@ venv.bak/
 
 # html
 google7edc98a4d1222d1a.html
+
+# Node / frontend build artifacts
+**/node_modules/
+**/.next/
+**/out/
+**/.playwright-cli/
+.vscode/
+.DS_Store
