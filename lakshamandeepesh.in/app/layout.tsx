@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import type { ReactNode } from 'react';
 
 import { SiteFooter } from '@/components/layout/site-footer';
@@ -21,17 +21,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="en">
       <body>
-        <Script async src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.gaMeasurementId}`} strategy="afterInteractive" />
-        <Script id="ga4-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            window.gtag = gtag;
-            gtag('js', new Date());
-            gtag('config', '${siteConfig.gaMeasurementId}', { page_path: window.location.pathname });
-          `}
-        </Script>
-
+        <GoogleAnalytics gaId={siteConfig.gaMeasurementId} />
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
