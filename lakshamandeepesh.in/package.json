@@ -13,6 +13,7 @@
     "validate:content": "node scripts/validate-content.mjs"
   },
   "dependencies": {
+    "@next/third-parties": "^16.1.6",
     "gray-matter": "^4.0.3",
     "next": "^16.1.6",
     "next-mdx-remote": "^6.0.0",
