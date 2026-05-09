@@ -52,3 +52,107 @@ a {
 .animate-reveal-delayed {
   animation: reveal 700ms ease-out both;
 }
+
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html,
+  body {
+    background: #ffffff;
+  }
+
+  header,
+  footer,
+  .print-hidden {
+    display: none !important;
+  }
+
+  main {
+    display: block;
+  }
+
+  .print-shell {
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .print-preview {
+    width: 100%;
+    max-width: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .print-document-root {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .print-document-page {
+    min-height: calc(297mm - 24mm);
+    border: 1px solid #d9d3c8 !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    padding: 8mm !important;
+  }
+
+  .print-document-card {
+    border: none !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .print-document-header,
+  .print-document-grid,
+  .print-document-block,
+  .print-signature-grid,
+  .print-stamp-area {
+    break-inside: avoid;
+  }
+
+  .print-document-block,
+  .print-stamp-area {
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .print-document-page p,
+  .print-document-page h3,
+  .print-document-page h4,
+  .print-document-page span,
+  .print-document-page div {
+    color: #111111 !important;
+    border-color: #d9d3c8 !important;
+  }
+
+  .print-document-page .text-accent {
+    color: #111111 !important;
+  }
+
+  .print-signature-image {
+    max-height: 18mm !important;
+  }
+
+  .print-stamp-area {
+    width: 42mm;
+    justify-self: end;
+  }
+}

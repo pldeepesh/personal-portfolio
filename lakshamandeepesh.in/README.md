@@ -13,9 +13,14 @@ Editorial-first website focused on experimentation and growth analytics.
 - `npm run validate:content`
 - `npm run build`
 - `npm run build:git-deploy`
+- `npm run playwright:help`
+- `npm run playwright -- <playwright-cli args>`
 
 `npm run build` generates Atom feed first, then creates static output in `out/`.
 `npm run build:git-deploy` builds and syncs `out/` into the project web-root files (`index.html`, `_next/`, route folders) so deployment can be done via Git pull only.
+
+## Playwright
+Use the repo-local launcher in `docs/playwright-codex.md` for Codex browser automation. It pins Node via `.nvmrc`, redirects Playwright runtime state into `/private/tmp`, and standardizes `output/playwright/` for artifacts. Browser-launching commands still require escalation in this environment.
 
 ## Environment Variables
 - `NEXT_PUBLIC_WAITLIST_FORM_ACTION`
