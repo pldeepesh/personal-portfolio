@@ -1,16 +1,19 @@
 import type { ReactNode } from 'react';
 
 type CardProps = {
+  as?: 'article' | 'div';
   children: ReactNode;
   className?: string;
 };
 
-export function Card({ children, className }: CardProps) {
+export function Card({ as = 'article', children, className }: CardProps) {
+  const Component = as;
+
   return (
-    <article
-      className={`rounded-2xl border border-border bg-white p-6 shadow-editorial transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(31,40,34,0.12)] ${className ?? ''}`}
+    <Component
+      className={`rounded-lg border border-border bg-surface/78 p-6 shadow-editorial backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-accent/60 hover:shadow-glow ${className ?? ''}`}
     >
       {children}
-    </article>
+    </Component>
   );
 }

@@ -61,7 +61,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
         />
 
         <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
-          <div className="space-y-6 rounded-2xl border border-border bg-white p-6 shadow-editorial sm:p-8">
+          <div className="space-y-6 rounded-lg border border-border bg-surface p-6 shadow-editorial sm:p-8">
             <div>
               <p className="text-sm font-semibold text-accent">Impact</p>
               <p className="mt-2 text-2xl font-heading text-ink">{study.headlineResult}</p>
@@ -92,7 +92,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
           </div>
 
           <aside className="space-y-5">
-            <div className="rounded-2xl border border-border bg-white p-5 shadow-editorial">
+            <div className="rounded-lg border border-border bg-surface p-5 shadow-editorial">
               <h3 className="font-heading text-2xl text-ink">Project scope</h3>
               <p className="mt-2 text-sm text-muted">{study.scope}</p>
 
@@ -107,7 +107,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-border bg-tint p-5 shadow-editorial">
+            <div className="rounded-lg border border-border bg-surface p-5 shadow-editorial">
               <h3 className="font-heading text-2xl text-ink">Need similar outcomes?</h3>
               <p className="mt-2 text-sm leading-7 text-muted">
                 If your team needs help with experimentation velocity, funnel decision systems, or pricing analytics, let’s talk.

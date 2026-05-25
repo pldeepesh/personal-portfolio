@@ -38,7 +38,7 @@ export function NewsletterForm() {
   }
 
   return (
-    <section className="rounded-2xl border border-border bg-white p-6 shadow-editorial">
+    <section className="rounded-lg border border-border bg-surface p-6 shadow-editorial">
       <h2 className="font-heading text-2xl text-ink">Weekly growth notes</h2>
       <p className="mt-2 text-sm text-muted">One practical article digest each week. No fluff, no spam.</p>
       <form className="mt-4 flex flex-col gap-3 sm:flex-row" onSubmit={handleSubmit}>

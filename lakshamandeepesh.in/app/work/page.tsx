@@ -45,7 +45,7 @@ export default function WorkPage() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {caseStudies.map((study, index) => (
             <article
-              className="overflow-hidden rounded-2xl border border-border bg-white shadow-editorial animate-reveal"
+              className="overflow-hidden rounded-lg border border-border bg-surface shadow-editorial animate-reveal"
               key={study.slug}
               style={{ animationDelay: `${index * 100}ms` }}
             >
@@ -62,8 +62,8 @@ export default function WorkPage() {
                 <p className="text-sm font-semibold text-accent">{study.headlineResult}</p>
                 <p className="text-sm leading-7 text-muted">{study.summary}</p>
                 <div className="flex flex-wrap gap-2 text-xs uppercase tracking-wide text-ink/75">
-                  <span className="rounded-full border border-border bg-tint px-3 py-1">{study.duration}</span>
-                  <span className="rounded-full border border-border bg-tint px-3 py-1">{study.scope}</span>
+                  <span className="rounded-full border border-border bg-surface px-3 py-1">{study.duration}</span>
+                  <span className="rounded-full border border-border bg-surface px-3 py-1">{study.scope}</span>
                 </div>
                 <EventLink
                   className="inline-flex text-sm font-semibold text-accent hover:text-ink"

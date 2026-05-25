@@ -81,7 +81,7 @@ export default function AboutPage() {
 
       <Section>
         <div className="mx-auto max-w-6xl space-y-10">
-          <div className="grid gap-8 rounded-2xl border border-border bg-white p-6 shadow-editorial lg:grid-cols-[1.15fr_0.85fr] lg:p-8">
+          <div className="grid gap-8 rounded-lg border border-border bg-surface p-6 shadow-editorial lg:grid-cols-[1.15fr_0.85fr] lg:p-8">
             <div className="animate-reveal">
               <h2 className="font-heading text-4xl leading-tight text-ink sm:text-5xl">The core story</h2>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-muted">
@@ -93,13 +93,13 @@ export default function AboutPage() {
                 practical outcomes, and creative storytelling through design and photography.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <span className="rounded-full border border-border bg-tint px-4 py-2 text-xs font-semibold uppercase tracking-wide text-ink/80">
+                <span className="rounded-full border border-border bg-surface px-4 py-2 text-xs font-semibold uppercase tracking-wide text-ink/80">
                   Experimentation Systems
                 </span>
-                <span className="rounded-full border border-border bg-tint px-4 py-2 text-xs font-semibold uppercase tracking-wide text-ink/80">
+                <span className="rounded-full border border-border bg-surface px-4 py-2 text-xs font-semibold uppercase tracking-wide text-ink/80">
                   Growth Analytics
                 </span>
-                <span className="rounded-full border border-border bg-tint px-4 py-2 text-xs font-semibold uppercase tracking-wide text-ink/80">
+                <span className="rounded-full border border-border bg-surface px-4 py-2 text-xs font-semibold uppercase tracking-wide text-ink/80">
                   Product Design Thinking
                 </span>
               </div>
@@ -139,7 +139,7 @@ export default function AboutPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {craftAreas.map((area, index) => (
               <article
-                className="overflow-hidden rounded-2xl border border-border bg-white shadow-editorial animate-reveal"
+                className="overflow-hidden rounded-lg border border-border bg-surface shadow-editorial animate-reveal"
                 key={area.title}
                 style={{ animationDelay: `${index * 120}ms` }}
               >
@@ -152,7 +152,7 @@ export default function AboutPage() {
             ))}
           </div>
 
-          <div className="rounded-2xl border border-border bg-white p-6 shadow-editorial sm:p-8">
+          <div className="rounded-lg border border-border bg-surface p-6 shadow-editorial sm:p-8">
             <div className="mb-6 flex items-center justify-between gap-4">
               <h2 className="font-heading text-3xl text-ink">Milestones</h2>
               <Link className="text-sm font-semibold text-accent hover:text-ink" href="/blog/">
@@ -174,7 +174,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="grid gap-6 rounded-2xl border border-border bg-white p-6 shadow-editorial lg:grid-cols-[1fr_320px]">
+          <div className="grid gap-6 rounded-lg border border-border bg-surface p-6 shadow-editorial lg:grid-cols-[1fr_320px]">
             <div>
               <h2 className="font-heading text-3xl text-ink">How I collaborate</h2>
               <p className="mt-3 leading-8 text-muted">
@@ -192,7 +192,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-border bg-tint p-5">
+            <div className="rounded-xl border border-border bg-surface p-5">
               <h3 className="font-heading text-2xl text-ink">Current focus</h3>
               <ul className="mt-3 space-y-3 text-sm leading-7 text-muted">
                 <li>Experiment design quality and guardrails</li>
@@ -203,7 +203,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-white p-6 shadow-editorial">
+          <div className="rounded-lg border border-border bg-surface p-6 shadow-editorial">
             <AuthorBadge
               author={{
                 name: 'Lakshmana Deepesh Reddy',

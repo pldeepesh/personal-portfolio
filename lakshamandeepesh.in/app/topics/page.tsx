@@ -61,17 +61,17 @@ export default function TopicsPage() {
         <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Topics', href: '/topics/' }]} />
 
         <div className="mt-10 grid gap-4 sm:grid-cols-3">
-          <article className="rounded-2xl border border-border bg-white p-5 shadow-editorial">
+          <article className="rounded-lg border border-border bg-surface p-5 shadow-editorial">
             <p className="text-xs font-semibold uppercase tracking-wide text-accent">Topic hubs</p>
             <p className="mt-2 font-heading text-4xl text-ink">{topics.length}</p>
             <p className="text-sm text-muted">Structured clusters currently live</p>
           </article>
-          <article className="rounded-2xl border border-border bg-white p-5 shadow-editorial">
+          <article className="rounded-lg border border-border bg-surface p-5 shadow-editorial">
             <p className="text-xs font-semibold uppercase tracking-wide text-accent">Published posts</p>
             <p className="mt-2 font-heading text-4xl text-ink">{totalPosts}</p>
             <p className="text-sm text-muted">Articles linked into topic architecture</p>
           </article>
-          <article className="rounded-2xl border border-border bg-white p-5 shadow-editorial">
+          <article className="rounded-lg border border-border bg-surface p-5 shadow-editorial">
             <p className="text-xs font-semibold uppercase tracking-wide text-accent">Intent keywords</p>
             <p className="mt-2 font-heading text-4xl text-ink">{totalKeywords}</p>
             <p className="text-sm text-muted">Priority queries mapped to content clusters</p>
@@ -80,7 +80,7 @@ export default function TopicsPage() {
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           {topics.map((topic) => (
-            <article className="overflow-hidden rounded-2xl border border-border bg-white shadow-editorial" key={topic.slug}>
+            <article className="overflow-hidden rounded-lg border border-border bg-surface shadow-editorial" key={topic.slug}>
               <Image alt={topic.title} className="h-64 w-full object-cover" height={760} src={topic.heroImage} width={1300} />
               <div className="space-y-4 p-6 sm:p-7">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Topic cluster</p>
@@ -92,7 +92,7 @@ export default function TopicsPage() {
                 <p className="max-w-2xl leading-8 text-muted">{topic.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {topic.intentKeywords.map((keyword) => (
-                    <span className="rounded-full border border-border bg-tint px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink/80" key={keyword}>
+                    <span className="rounded-full border border-border bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink/80" key={keyword}>
                       {keyword}
                     </span>
                   ))}
@@ -120,7 +120,7 @@ export default function TopicsPage() {
           ))}
 
           <aside className="space-y-6">
-            <article className="rounded-2xl border border-border bg-white p-6 shadow-editorial">
+            <article className="rounded-lg border border-border bg-surface p-6 shadow-editorial">
               <h2 className="font-heading text-3xl text-ink">How these clusters are built</h2>
               <ul className="mt-4 space-y-3 text-sm leading-7 text-muted">
                 <li>One pillar post defines the decision framework and operating model.</li>
@@ -130,7 +130,7 @@ export default function TopicsPage() {
               </ul>
             </article>
 
-            <article className="overflow-hidden rounded-2xl border border-border bg-white shadow-editorial">
+            <article className="overflow-hidden rounded-lg border border-border bg-surface shadow-editorial">
               <Image
                 alt="Keyword and performance review documents"
                 className="h-56 w-full object-cover"

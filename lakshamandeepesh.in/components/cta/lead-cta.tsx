@@ -14,9 +14,9 @@ export function LeadCTA({
   description = 'I help product and growth teams design measurement systems, experiments, and analytical workflows that drive decisions with confidence.'
 }: LeadCTAProps) {
   return (
-    <section className="rounded-2xl border border-border bg-ink px-6 py-10 text-paper sm:px-10">
+    <section className="rounded-lg border border-accent/30 bg-accent-soft px-6 py-10 text-ink shadow-glow sm:px-10">
       <h2 className="font-heading text-3xl">{title}</h2>
-      <p className="mt-3 max-w-2xl text-sm text-paper/80 sm:text-base">{description}</p>
+      <p className="mt-3 max-w-2xl text-sm text-muted sm:text-base">{description}</p>
       <div className="mt-6 flex flex-wrap gap-3">
         <Link
           className="btn-primary"

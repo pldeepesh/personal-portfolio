@@ -77,9 +77,9 @@ export default function ProductsPage() {
 
           <div className="grid gap-4">
             {roadmapItems.map((item) => (
-              <article className="rounded-2xl border border-border bg-white p-5 shadow-editorial" key={item.title}>
+              <article className="rounded-lg border border-border bg-surface p-5 shadow-editorial" key={item.title}>
                 <div className="flex items-start gap-3">
-                  <span className="mt-1 inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-tint text-accent">
+                  <span className="mt-1 inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-accent">
                     <item.Icon />
                   </span>
                   <div>

@@ -28,6 +28,6 @@ export const mdxComponents: MDXComponents = {
     <blockquote className="mt-6 border-l-4 border-accent/60 pl-4 italic text-ink/85">{children}</blockquote>
   ),
   code: ({ children }) => (
-    <code className="rounded bg-tint px-1.5 py-1 font-mono text-sm text-ink">{children}</code>
+    <code className="rounded bg-surface px-1.5 py-1 font-mono text-sm text-ink">{children}</code>
   )
 };

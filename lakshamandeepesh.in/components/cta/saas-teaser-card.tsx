@@ -5,7 +5,7 @@ import { WaitlistCTA } from '@/components/cta/waitlist-cta';
 export function SaaSTeaserCard() {
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-      <div className="rounded-2xl border border-border bg-[linear-gradient(170deg,#fff3de_0%,#fffaf0_100%)] p-6 shadow-editorial">
+      <div className="rounded-lg border border-border bg-surface p-6 shadow-editorial">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Micro-SaaS Foundation</p>
         <h2 className="mt-3 font-heading text-3xl text-ink">Product ideas in active discovery</h2>
         <p className="mt-3 text-sm leading-relaxed text-muted">

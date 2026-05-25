@@ -30,7 +30,7 @@ export function BlogFilterGrid({ posts }: BlogFilterGridProps) {
             className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-wide transition ${
               activeTopic === topic
                 ? 'border-accent bg-accent text-white'
-                : 'border-border bg-white text-ink hover:border-accent hover:text-accent'
+                : 'border-border bg-surface text-ink hover:border-accent hover:text-accent'
             }`}
             key={topic}
             onClick={() => setActiveTopic(topic)}

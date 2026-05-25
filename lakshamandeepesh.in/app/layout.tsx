@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 
 import { SiteFooter } from '@/components/layout/site-footer';
 import { SiteHeader } from '@/components/layout/site-header';
+import { ReducedMotionProvider } from '@/components/motion/ReducedMotionProvider';
 import { siteConfig } from '@/lib/site-config';
 import { createMetadata } from '@/lib/seo';
 
@@ -21,10 +22,15 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="en">
       <body>
-        <GoogleAnalytics gaId={siteConfig.gaMeasurementId} />
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
+        <ReducedMotionProvider>
+          <a className="sr-only z-50 rounded-lg bg-accent px-4 py-3 font-semibold text-background focus:not-sr-only focus:fixed focus:left-4 focus:top-4" href="#main-content">
+            Skip to content
+          </a>
+          <GoogleAnalytics gaId={siteConfig.gaMeasurementId} />
+          <SiteHeader />
+          <main id="main-content">{children}</main>
+          <SiteFooter />
+        </ReducedMotionProvider>
       </body>
     </html>
   );

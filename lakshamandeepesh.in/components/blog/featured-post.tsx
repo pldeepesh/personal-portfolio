@@ -11,7 +11,7 @@ type FeaturedPostProps = {
 
 export function FeaturedPost({ post }: FeaturedPostProps) {
   return (
-    <article className="grid gap-8 overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-editorial sm:grid-cols-[1.2fr_0.8fr]">
+    <article className="grid gap-8 overflow-hidden rounded-lg border border-border bg-surface p-6 shadow-editorial sm:grid-cols-[1.2fr_0.8fr]">
       <div className="space-y-4">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Featured Insight</p>
         <h2 className="font-heading text-3xl leading-tight text-ink sm:text-4xl">

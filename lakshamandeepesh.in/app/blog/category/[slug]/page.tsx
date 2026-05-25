@@ -44,7 +44,7 @@ export default async function LegacyCategoryPage({ params }: LegacyPageProps) {
 
   return (
     <Section>
-      <div className="mx-auto max-w-2xl rounded-2xl border border-border bg-white p-8 text-center shadow-editorial">
+      <div className="mx-auto max-w-2xl rounded-lg border border-border bg-surface p-8 text-center shadow-editorial">
         <h1 className="font-heading text-4xl text-ink">Legacy category moved</h1>
         <p className="mt-3 text-muted">
           This archive has been consolidated into the new topic hub for better SEO structure and navigation.

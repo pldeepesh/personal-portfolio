@@ -79,21 +79,21 @@ export default async function TopicPage({ params }: TopicPageProps) {
         />
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <article className="rounded-2xl border border-border bg-white p-6 shadow-editorial sm:p-8">
+          <article className="rounded-lg border border-border bg-surface p-6 shadow-editorial sm:p-8">
             <h2 className="font-heading text-3xl text-ink">What this cluster covers</h2>
             <p className="mt-3 leading-8 text-muted">
               This hub is designed to rank for core experimentation and growth analytics intents while giving readers a clear path from strategy to execution.
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
               {topic.intentKeywords.map((keyword) => (
-                <span className="rounded-full border border-border bg-tint px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink/80" key={keyword}>
+                <span className="rounded-full border border-border bg-surface px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink/80" key={keyword}>
                   {keyword}
                 </span>
               ))}
             </div>
           </article>
 
-          <article className="overflow-hidden rounded-2xl border border-border bg-white shadow-editorial">
+          <article className="overflow-hidden rounded-lg border border-border bg-surface shadow-editorial">
             <Image alt={`${topic.title} dashboard and reports`} className="h-56 w-full object-cover" height={520} src={topic.spotlightImage} width={760} />
             <div className="p-5">
               <p className="text-xs font-semibold uppercase tracking-wide text-accent">Cluster signal</p>
@@ -106,7 +106,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
         </div>
 
         {pillarPost ? (
-          <article className="mt-8 grid gap-6 overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-editorial md:grid-cols-[1fr_340px]">
+          <article className="mt-8 grid gap-6 overflow-hidden rounded-lg border border-border bg-surface p-6 shadow-editorial md:grid-cols-[1fr_340px]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-accent">Pillar Guide</p>
               <h2 className="mt-2 font-heading text-3xl leading-tight text-ink sm:text-4xl">{pillarPost.title}</h2>
@@ -120,7 +120,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
                 >
                   Read the pillar guide
                 </EventLink>
-                <span className="rounded-full border border-border bg-tint px-4 py-2 text-xs font-semibold uppercase tracking-wide text-ink/80">
+                <span className="rounded-full border border-border bg-surface px-4 py-2 text-xs font-semibold uppercase tracking-wide text-ink/80">
                   {pillarPost.readingTimeMinutes} min read
                 </span>
               </div>

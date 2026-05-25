@@ -55,7 +55,7 @@ export default function ContactPage() {
       <Section>
         <div className="mx-auto max-w-6xl space-y-8">
           <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="rounded-2xl border border-border bg-white p-6 shadow-editorial sm:p-8">
+            <div className="rounded-lg border border-border bg-surface p-6 shadow-editorial sm:p-8">
               <h2 className="font-heading text-3xl text-ink">Reach out directly</h2>
               <p className="mt-3 leading-8 text-muted">
                 Share your product stage, current analytics stack, and where decision bottlenecks are slowing growth. I
@@ -101,7 +101,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-border bg-tint p-6 shadow-editorial sm:p-8">
+            <div className="rounded-lg border border-border bg-surface p-6 shadow-editorial sm:p-8">
               <h2 className="font-heading text-3xl text-ink">Before you send a note</h2>
               <p className="mt-3 text-sm leading-7 text-muted">Include these details so we can make the first call actionable.</p>
               <ul className="mt-4 space-y-3 text-sm leading-7 text-ink/85">
@@ -111,14 +111,14 @@ export default function ContactPage() {
                 <li>• Target timeline and expected outcomes</li>
               </ul>
 
-              <div className="mt-6 rounded-xl border border-border bg-white p-4">
+              <div className="mt-6 rounded-xl border border-border bg-surface p-4">
                 <p className="text-xs font-semibold uppercase tracking-wide text-accent">Availability</p>
                 <p className="mt-2 text-sm text-muted">Advisory, analytics system design, and focused execution sprints.</p>
               </div>
             </div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-white p-6 shadow-editorial sm:p-8">
+          <div className="rounded-lg border border-border bg-surface p-6 shadow-editorial sm:p-8">
             <h2 className="font-heading text-3xl text-ink">Engagement flow</h2>
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               {engagementFlow.map((item) => (

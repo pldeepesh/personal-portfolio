@@ -44,7 +44,7 @@ export default async function LegacyAuthorPage({ params }: LegacyPageProps) {
 
   return (
     <Section>
-      <div className="mx-auto max-w-2xl rounded-2xl border border-border bg-white p-8 text-center shadow-editorial">
+      <div className="mx-auto max-w-2xl rounded-lg border border-border bg-surface p-8 text-center shadow-editorial">
         <h1 className="font-heading text-4xl text-ink">Author page moved</h1>
         <p className="mt-3 text-muted">Author authority and profile are now consolidated in a dedicated about page.</p>
         <a className="btn-primary mt-6 inline-flex" href={entry.href}>

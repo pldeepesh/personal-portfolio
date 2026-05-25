@@ -7,7 +7,7 @@ import { getAllCaseStudies } from '@/lib/work';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ['/', '/blog/', '/about/', '/work/', '/products/', '/contact/'];
+  const pages = ['/', '/blog/', '/about/', '/work/', '/tools/', '/products/', '/contact/'];
   const posts = getAllPosts().map((post) => `/blog/${post.slug}/`);
   const topics = getAllTopics().map((topic) => `/topics/${topic.slug}/`);
   const work = getAllCaseStudies().map((study) => `/work/${study.slug}/`);

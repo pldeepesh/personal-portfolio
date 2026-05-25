@@ -38,7 +38,7 @@ export function WaitlistCTA() {
   }
 
   return (
-    <section className="rounded-2xl border border-border bg-white p-6 shadow-editorial">
+    <section className="rounded-lg border border-border bg-surface p-6 shadow-editorial">
       <h2 className="font-heading text-2xl text-ink">Get early access</h2>
       <p className="mt-2 text-sm text-muted">
         Join the waitlist for analytics micro-SaaS tools built for experimentation and growth teams.

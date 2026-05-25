@@ -8,7 +8,7 @@ type TopicClusterRailProps = {
 
 export function TopicClusterRail({ topics }: TopicClusterRailProps) {
   return (
-    <div className="rounded-2xl border border-border bg-white p-6 shadow-editorial">
+    <div className="rounded-lg border border-border bg-surface p-6 shadow-editorial">
       <h2 className="font-heading text-2xl text-ink">Traffic clusters</h2>
       <p className="mt-2 text-sm text-muted">
         Every cluster is built as a pillar + supporting articles to improve topical authority and internal linking depth.
