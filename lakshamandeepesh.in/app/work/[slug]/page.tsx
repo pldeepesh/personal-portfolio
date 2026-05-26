@@ -1,10 +1,12 @@
-import Image from 'next/image';
+import { ArrowRight, CheckCircle2, LockKeyhole } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { EventLink } from '@/components/analytics/event-link';
-import { Breadcrumbs } from '@/components/seo/breadcrumbs';
+import { ButtonLink } from '@/components/primitives/button';
+import { Card } from '@/components/primitives/card';
+import { Container } from '@/components/primitives/container';
 import { Section } from '@/components/primitives/section';
+import { Breadcrumbs } from '@/components/seo/breadcrumbs';
 import { createMetadata } from '@/lib/seo';
 import { getAllCaseStudies, getCaseStudyBySlug } from '@/lib/work';
 
@@ -39,16 +41,21 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-border">
-        <Image alt={study.title} className="h-[44vh] min-h-[330px] w-full object-cover" height={1000} priority src={study.heroImage} width={2200} />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#101512]/75 via-[#1a211c]/50 to-transparent" />
-        <div className="absolute inset-0 mx-auto flex w-full max-w-6xl items-end px-4 pb-10 sm:px-6">
-          <div className="max-w-3xl text-paper">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f8d7b9]">Case Study</p>
-            <h1 className="mt-3 font-heading text-4xl leading-tight sm:text-6xl">{study.title}</h1>
-            <p className="mt-4 text-base leading-7 text-paper/85 sm:text-lg">{study.summary}</p>
+      <section className="relative overflow-hidden border-b border-border bg-[radial-gradient(circle_at_76%_20%,rgba(55,168,255,0.18),transparent_34%),linear-gradient(135deg,#07101d,#05070d)]">
+        <Container className="py-20 sm:py-24">
+          <div className="max-w-4xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">{study.category} case study</p>
+            <h1 className="mt-4 font-heading text-4xl font-semibold leading-tight text-ink sm:text-6xl">{study.title}</h1>
+            <p className="mt-5 max-w-3xl text-base leading-8 text-muted sm:text-lg">{study.summary}</p>
+            <div className="mt-7 flex flex-wrap gap-2">
+              {study.tags.map((tag) => (
+                <span className="rounded-lg border border-border bg-surface/70 px-3 py-2 text-xs font-semibold text-muted" key={tag}>
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       <Section>
@@ -60,77 +67,116 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
           ]}
         />
 
-        <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
-          <div className="space-y-6 rounded-lg border border-border bg-surface p-6 shadow-editorial sm:p-8">
-            <div>
-              <p className="text-sm font-semibold text-accent">Impact</p>
-              <p className="mt-2 text-2xl font-heading text-ink">{study.headlineResult}</p>
-            </div>
+        <div className="grid gap-6 lg:grid-cols-[1fr_340px]">
+          <div className="space-y-6">
+            <Card as="div">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">Problem</p>
+              <h2 className="mt-3 font-heading text-3xl text-ink">The decision gap</h2>
+              <p className="mt-4 leading-8 text-muted">{study.problem}</p>
+            </Card>
 
-            <div>
-              <h2 className="font-heading text-3xl text-ink">Challenge</h2>
-              <p className="mt-3 leading-8 text-muted">{study.challenge}</p>
-            </div>
-
-            <div>
-              <h2 className="font-heading text-3xl text-ink">Approach</h2>
-              <ul className="mt-3 space-y-3 text-sm leading-7 text-muted">
+            <Card as="div">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">Approach</p>
+              <h2 className="mt-3 font-heading text-3xl text-ink">How the system was designed</h2>
+              <div className="mt-5 grid gap-3">
                 {study.approach.map((item) => (
-                  <li key={item}>• {item}</li>
+                  <div className="flex gap-3 rounded-lg border border-border bg-background/70 p-4" key={item}>
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-success" />
+                    <p className="text-sm leading-7 text-muted">{item}</p>
+                  </div>
                 ))}
-              </ul>
-            </div>
+              </div>
+            </Card>
 
-            <div>
-              <h2 className="font-heading text-3xl text-ink">Outcomes</h2>
-              <ul className="mt-3 space-y-3 text-sm leading-7 text-muted">
+            <Card as="div">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">Impact</p>
+              <h2 className="mt-3 font-heading text-3xl text-ink">{study.headlineResult}</h2>
+              <div className="mt-5 grid gap-3 md:grid-cols-3">
+                {study.impact.map((item) => (
+                  <div className="rounded-lg border border-border bg-background/70 p-4 text-sm leading-7 text-muted" key={item}>
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </Card>
+
+            <Card as="div">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">Outcomes</p>
+              <h2 className="mt-3 font-heading text-3xl text-ink">What changed</h2>
+              <ul className="mt-4 space-y-3 text-sm leading-7 text-muted">
                 {study.outcomes.map((item) => (
-                  <li key={item}>• {item}</li>
+                  <li className="flex gap-3" key={item}>
+                    <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                    {item}
+                  </li>
                 ))}
               </ul>
-            </div>
+            </Card>
           </div>
 
           <aside className="space-y-5">
-            <div className="rounded-lg border border-border bg-surface p-5 shadow-editorial">
-              <h3 className="font-heading text-2xl text-ink">Project scope</h3>
-              <p className="mt-2 text-sm text-muted">{study.scope}</p>
-
-              <h4 className="mt-5 text-sm font-semibold uppercase tracking-wide text-accent">Duration</h4>
-              <p className="mt-1 text-sm text-muted">{study.duration}</p>
-
-              <h4 className="mt-5 text-sm font-semibold uppercase tracking-wide text-accent">Tools</h4>
-              <ul className="mt-2 space-y-2 text-sm text-muted">
-                {study.tools.map((tool) => (
-                  <li key={tool}>• {tool}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="rounded-lg border border-border bg-surface p-5 shadow-editorial">
-              <h3 className="font-heading text-2xl text-ink">Need similar outcomes?</h3>
-              <p className="mt-2 text-sm leading-7 text-muted">
-                If your team needs help with experimentation velocity, funnel decision systems, or pricing analytics, let’s talk.
-              </p>
-              <div className="mt-4 flex flex-col gap-2">
-                <EventLink
-                  className="btn-primary"
-                  eventName="cta_click"
-                  eventParams={{ location: 'work_detail', target: 'contact' }}
-                  href="/contact/"
-                >
-                  Discuss your project
-                </EventLink>
-                {study.relatedPostSlug ? (
-                  <Link className="text-sm font-semibold text-accent hover:text-ink" href={`/blog/${study.relatedPostSlug}/`}>
-                    Read related playbook →
-                  </Link>
-                ) : null}
+            <Card as="div">
+              <h3 className="font-heading text-2xl text-ink">Project context</h3>
+              <div className="mt-5 space-y-4 text-sm">
+                <Meta label="Scope" value={study.scope} />
+                <Meta label="Duration" value={study.duration} />
+                <Meta label="Confidentiality" value={study.confidentialityLabel} />
               </div>
-            </div>
+              <div className="mt-5 flex items-start gap-2 rounded-lg border border-accent/25 bg-accent-soft/50 p-3 text-sm leading-6 text-muted">
+                <LockKeyhole className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                Client and employer details are intentionally generalized.
+              </div>
+            </Card>
+
+            <Card as="div">
+              <h3 className="font-heading text-2xl text-ink">Stack</h3>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {study.stack.map((item) => (
+                  <span className="rounded-lg border border-border px-3 py-2 text-xs font-semibold text-muted" key={item}>
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </Card>
+
+            <Card as="div">
+              <h3 className="font-heading text-2xl text-ink">Related tools</h3>
+              <div className="mt-4 space-y-3">
+                {study.relatedTools.map((tool) => (
+                  <Link className="block rounded-lg border border-border bg-background/70 p-3 text-sm font-semibold text-accent hover:border-accent hover:text-ink" href="/tools/" key={tool}>
+                    {tool.replace(/-/g, ' ')}
+                  </Link>
+                ))}
+              </div>
+            </Card>
+
+            <Card as="div">
+              <h3 className="font-heading text-2xl text-ink">Next step</h3>
+              <p className="mt-2 text-sm leading-7 text-muted">
+                If your team needs a similar decision system, start with a focused diagnostic call.
+              </p>
+              <ButtonLink className="mt-5 w-full" href="/contact/">
+                Discuss your project
+                <ArrowRight className="h-4 w-4" />
+              </ButtonLink>
+              {study.relatedArticles[0] ? (
+                <Link className="mt-4 block text-sm font-semibold text-accent hover:text-ink" href={`/blog/${study.relatedArticles[0]}/`}>
+                  Read related article →
+                </Link>
+              ) : null}
+            </Card>
           </aside>
         </div>
       </Section>
     </>
+  );
+}
+
+function Meta({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">{label}</p>
+      <p className="mt-1 font-semibold text-ink">{value}</p>
+    </div>
   );
 }

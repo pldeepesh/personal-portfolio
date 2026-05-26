@@ -158,7 +158,7 @@ const positioningItems = [
 
 export default function HomePage() {
   const posts = getAllPosts().slice(0, 3);
-  const caseStudies = getAllCaseStudies();
+  const caseStudies = getAllCaseStudies().slice(0, 3);
 
   return (
     <>

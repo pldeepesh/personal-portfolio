@@ -38,8 +38,8 @@ The site must:
 | 1 | Foundation, Dependencies, and Design System | In progress: foundation, design system, layout complete; form handlers pending static-export decision |
 | 2 | 3D and Motion Infrastructure | Complete for V1 primitives; custom GLB phase deferred |
 | 3 | Homepage Rebuild | Complete |
-| 4 | Content Model and Page Templates | Not started |
-| 5 | Blog, Topics, and SEO Preservation | Not started |
+| 4 | Content Model and Page Templates | Complete |
+| 5 | Blog, Topics, and SEO Preservation | Complete |
 | 6 | Free Tools Platform and Funnel Tool | Not started |
 | 7 | Analytics, Forms, and Conversion Tracking | Not started |
 | 8 | SEO, Accessibility, Performance, and Launch QA | Not started |
@@ -68,7 +68,7 @@ The site must:
 - [x] Create final old-to-new URL migration map.
 - [x] Decide which generated/static root files should remain part of the repo during the revamp.
 - [x] Re-run confidentiality scan after Phase 1 foundation changes.
-- [ ] Re-run confidentiality scan after each future major content phase.
+- [x] Re-run confidentiality scan after each future major content phase.
 
 ### Current Branch Baseline
 
@@ -494,37 +494,53 @@ Phase 1 form-handler note: server-side Resend handlers are blocked by the curren
 
 ### Content Types
 
-- [ ] Extend case study type with category, tags, problem, impact, stack, related tools, related articles, and confidentiality label.
-- [ ] Extend tool type with status, input metadata, related articles, related case studies, SEO copy, and event names.
-- [ ] Extend blog frontmatter with optional related tools and CTA metadata without breaking existing posts.
+- [x] Extend case study type with category, tags, problem, impact, stack, related tools, related articles, and confidentiality label.
+- [x] Extend tool type with status, input metadata, related articles, related case studies, SEO copy, and event names.
+- [x] Extend blog frontmatter with optional related tools and CTA metadata without breaking existing posts.
 
 ### Case Studies
 
-- [ ] Growth Funnel Diagnostics System.
-- [ ] AI-Powered Lead Prioritization Framework.
-- [ ] Paid Marketing Attribution System.
-- [ ] Document Intelligence Workflow.
-- [ ] AI Sales Quality Audit System.
-- [ ] Experimentation Decision Framework.
+- [x] Growth Funnel Diagnostics System.
+- [x] AI-Powered Lead Prioritization Framework.
+- [x] Paid Marketing Attribution System.
+- [x] Document Intelligence Workflow.
+- [x] AI Sales Quality Audit System.
+- [x] Experimentation Decision Framework.
 
 ### Pages
 
-- [ ] Rebuild `/work`.
-- [ ] Rebuild `/work/[slug]`.
-- [ ] Rebuild `/about`.
-- [ ] Rebuild `/products`.
-- [ ] Rebuild `/contact`.
-- [ ] Add `/newsletter`.
+- [x] Rebuild `/work`.
+- [x] Rebuild `/work/[slug]`.
+- [x] Rebuild `/about`.
+- [x] Rebuild `/products`.
+- [x] Rebuild `/contact`.
+- [x] Add `/newsletter`.
 
 ### Contact Page Requirements
 
-- [ ] Strategy-call-first positioning.
-- [ ] Full validated contact form.
-- [ ] Help-type dropdown.
-- [ ] Budget or project type.
-- [ ] Timeline.
-- [ ] Calendar link.
-- [ ] FAQ.
+- [x] Strategy-call-first positioning.
+- [x] Full validated contact form.
+- [x] Help-type dropdown.
+- [x] Budget or project type.
+- [x] Timeline.
+- [x] Calendar link.
+- [x] FAQ.
+
+### Phase 4 Verification
+
+- `npm run build` passed.
+- Static export now includes `/newsletter/` and expanded `/work/[slug]/` paths.
+- Playwright CLI verified `/work/`, `/work/funnel-diagnostics-operating-model/`, `/about/`, `/products/`, `/contact/`, and `/newsletter/` on desktop and mobile.
+- Page QA: required section text rendered, no horizontal overflow, no obvious text clipping candidates, and no console errors.
+- Contact form QA: local validation errors render for missing name, email, help type, project type, timeline, and project context.
+- Form architecture note: contact/newsletter/waitlist remain client-side validated external-endpoint forms while `output: 'export'` is active.
+- Verification screenshots:
+  - `output/playwright/phase4-work-desktop.png`
+  - `output/playwright/phase4-work-detail-desktop.png`
+  - `output/playwright/phase4-about-desktop.png`
+  - `output/playwright/phase4-products-desktop.png`
+  - `output/playwright/phase4-contact-mobile-final.png`
+  - `output/playwright/phase4-newsletter-mobile.png`
 
 ## Phase 5: Blog, Topics, and SEO Preservation
 
@@ -536,40 +552,57 @@ Phase 1 form-handler note: server-side Resend handlers are blocked by the curren
 
 ### Blog
 
-- [ ] Preserve all current MDX blog files.
-- [ ] Keep existing slugs.
-- [ ] Update article template to match new dark premium design.
-- [ ] Keep reading progress.
-- [ ] Keep table of contents.
-- [ ] Keep related posts.
-- [ ] Add contextual CTA block.
-- [ ] Add newsletter block.
-- [ ] Add related tool CTA.
-- [ ] Add article schema.
-- [ ] Add breadcrumb schema.
+- [x] Preserve all current MDX blog files.
+- [x] Keep existing slugs.
+- [x] Update article template to match new dark premium design.
+- [x] Keep reading progress.
+- [x] Keep table of contents.
+- [x] Keep related posts.
+- [x] Add contextual CTA block.
+- [x] Add newsletter block.
+- [x] Add related tool CTA.
+- [x] Add article schema.
+- [x] Add breadcrumb schema.
 
 ### Topic Pages
 
-- [ ] `/topics/experimentation`
-- [ ] `/topics/growth-analytics`
-- [ ] `/topics/attribution`
-- [ ] `/topics/ai-workflows`
-- [ ] `/topics/data-strategy`
-- [ ] `/topics/decision-systems`
-- [ ] `/topics/marketing-analytics`
-- [ ] `/topics/product-analytics`
-- [ ] `/topics/data-engineering`
+- [x] `/topics/experimentation`
+- [x] `/topics/growth-analytics`
+- [x] `/topics/attribution`
+- [x] `/topics/ai-workflows`
+- [x] `/topics/data-strategy`
+- [x] `/topics/decision-systems`
+- [x] `/topics/marketing-analytics`
+- [x] `/topics/product-analytics`
+- [x] `/topics/data-engineering`
 
 ### Internal Linking Rules
 
-- [ ] Every blog links to one relevant tool.
-- [ ] Every blog links to one relevant case study.
-- [ ] Every blog links to two related blogs.
-- [ ] Every blog links to one topic page.
-- [ ] Every tool links to two related blogs.
-- [ ] Every tool links to one case study.
-- [ ] Every tool links to contact and newsletter.
-- [ ] Every case study links to one related article, one related tool, and contact.
+- [x] Every blog links to one relevant tool.
+- [x] Every blog links to one relevant case study.
+- [x] Every blog links to two related blogs.
+- [x] Every blog links to one topic page.
+- [x] Every tool links to two related blogs.
+- [x] Every tool links to one case study.
+- [x] Every tool links to contact and newsletter.
+- [x] Every case study links to one related article, one related tool, and contact.
+
+### Phase 5 Verification
+
+- `npm run validate:content` passed for 10 posts.
+- `npm run build` passed and generated 43 static routes.
+- Static export preserves all 10 existing `/blog/[slug]/` pages.
+- Static export includes the 9 new requested topic hubs plus the legacy `/topics/experimentation-growth-analytics/` route.
+- Blog article template verified with reading progress, table of contents, related posts, contextual CTA, newsletter block, related tool CTA, related case-study CTA, article schema, and breadcrumb schema.
+- Playwright CLI verified `/blog/`, `/blog/acquisition-funnel-diagnostics/`, `/topics/`, `/topics/experimentation/`, `/topics/growth-analytics/`, and `/topics/experimentation-growth-analytics/` on desktop and mobile.
+- Page QA: required section text rendered, no horizontal overflow, no offscreen text/card candidates, and no console errors.
+- Visual QA corrected the topic hero overlay so white hero copy remains readable over the image.
+- Verification screenshots:
+  - `output/playwright/phase5-blog-desktop-final.png`
+  - `output/playwright/phase5-article-desktop-final.png`
+  - `output/playwright/phase5-article-mobile-final.png`
+  - `output/playwright/phase5-topics-desktop-final-overlay.png`
+  - `output/playwright/phase5-topic-experimentation-mobile-final.png`
 
 ## Phase 6: Free Tools Platform and Funnel Tool
 

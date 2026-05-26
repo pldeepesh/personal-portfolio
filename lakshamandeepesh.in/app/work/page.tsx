@@ -1,80 +1,84 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import { ArrowRight, LockKeyhole, Tags } from 'lucide-react';
 
-import { EventLink } from '@/components/analytics/event-link';
-import { Breadcrumbs } from '@/components/seo/breadcrumbs';
+import { ButtonLink } from '@/components/primitives/button';
+import { Card } from '@/components/primitives/card';
+import { Container } from '@/components/primitives/container';
 import { Section } from '@/components/primitives/section';
+import { Breadcrumbs } from '@/components/seo/breadcrumbs';
 import { createMetadata } from '@/lib/seo';
 import { getAllCaseStudies } from '@/lib/work';
 
 export const metadata = createMetadata({
   title: 'Work | Lakshmana Deepesh',
-  description: 'Detailed case studies across growth analytics, experimentation, and product decision infrastructure.',
+  description: 'Anonymized case studies across AI workflows, growth analytics, experimentation, and decision systems.',
   path: '/work/'
 });
 
 export default function WorkPage() {
   const caseStudies = getAllCaseStudies();
+  const categories = Array.from(new Set(caseStudies.map((study) => study.category)));
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-border">
-        <Image
-          alt="Case studies hero background"
-          className="h-[40vh] min-h-[320px] w-full object-cover"
-          height={1000}
-          priority
-          src="/img/stock/work-hero.jpg"
-          width={2200}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#141915]/80 via-[#1b221d]/55 to-transparent" />
-        <div className="absolute inset-0 mx-auto flex w-full max-w-6xl items-end px-4 pb-10 sm:px-6">
-          <div className="max-w-2xl text-paper animate-reveal">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f8d7b9]">Case Studies</p>
-            <h1 className="mt-3 font-heading text-4xl leading-tight sm:text-6xl">Work that changed decisions, not just dashboards</h1>
-            <p className="mt-4 text-base leading-7 text-paper/85 sm:text-lg">
-              Selected projects where experimentation, analytics, and operating cadence were redesigned for measurable business impact.
+      <section className="relative overflow-hidden border-b border-border bg-[radial-gradient(circle_at_75%_20%,rgba(55,168,255,0.18),transparent_34%),linear-gradient(135deg,#07101d,#05070d)]">
+        <Container className="py-20 sm:py-24">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Selected work</p>
+            <h1 className="mt-4 font-heading text-4xl font-semibold leading-tight text-ink sm:text-6xl">
+              Anonymized systems that changed how teams made decisions.
+            </h1>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-muted sm:text-lg">
+              Public-safe case studies across growth funnels, AI workflows, attribution, experimentation, and decision-system design.
             </p>
+            <div className="mt-7 flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <span className="rounded-lg border border-border bg-surface/70 px-3 py-2 text-xs font-semibold text-muted" key={category}>
+                  {category}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       <Section>
         <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Work', href: '/work/' }]} />
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {caseStudies.map((study, index) => (
-            <article
-              className="overflow-hidden rounded-lg border border-border bg-surface shadow-editorial animate-reveal"
-              key={study.slug}
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <Link className="block overflow-hidden" href={`/work/${study.slug}/`}>
-                <Image alt={study.title} className="h-48 w-full object-cover transition duration-500 hover:scale-105" height={360} src={study.heroImage} width={640} />
-              </Link>
-
-              <div className="space-y-4 p-6">
-                <h2 className="font-heading text-2xl text-ink">
-                  <Link className="hover:text-accent" href={`/work/${study.slug}/`}>
-                    {study.title}
-                  </Link>
-                </h2>
-                <p className="text-sm font-semibold text-accent">{study.headlineResult}</p>
-                <p className="text-sm leading-7 text-muted">{study.summary}</p>
-                <div className="flex flex-wrap gap-2 text-xs uppercase tracking-wide text-ink/75">
-                  <span className="rounded-full border border-border bg-surface px-3 py-1">{study.duration}</span>
-                  <span className="rounded-full border border-border bg-surface px-3 py-1">{study.scope}</span>
-                </div>
-                <EventLink
-                  className="inline-flex text-sm font-semibold text-accent hover:text-ink"
-                  eventName="cta_click"
-                  eventParams={{ location: 'work_index', target: study.slug }}
-                  href={`/work/${study.slug}/`}
-                >
-                  Read full case study →
-                </EventLink>
+            <Card className="flex h-full flex-col" key={study.slug}>
+              <div className="flex items-start justify-between gap-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Case {String(index + 1).padStart(2, '0')}</p>
+                <span className="rounded-lg border border-border bg-background/70 px-3 py-1 text-xs font-semibold text-muted">{study.category}</span>
               </div>
-            </article>
+
+              <h2 className="mt-5 font-heading text-2xl font-semibold leading-tight text-ink">{study.title}</h2>
+              <p className="mt-3 flex-1 text-sm leading-7 text-muted">{study.summary}</p>
+
+              <div className="mt-5 rounded-lg border border-border bg-background/70 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">Impact</p>
+                <p className="mt-2 text-sm font-semibold leading-6 text-ink">{study.headlineResult}</p>
+              </div>
+
+              <div className="mt-5 flex items-center gap-2 text-xs text-muted">
+                <LockKeyhole className="h-4 w-4 text-accent" />
+                {study.confidentialityLabel}
+              </div>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {study.tags.slice(0, 3).map((tag) => (
+                  <span className="inline-flex items-center gap-1 rounded-lg border border-border px-2.5 py-1 text-xs text-muted" key={tag}>
+                    <Tags className="h-3 w-3" />
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <ButtonLink className="mt-6 w-fit" href={`/work/${study.slug}/`} variant="secondary">
+                View Case Study
+                <ArrowRight className="h-4 w-4" />
+              </ButtonLink>
+            </Card>
           ))}
         </div>
       </Section>

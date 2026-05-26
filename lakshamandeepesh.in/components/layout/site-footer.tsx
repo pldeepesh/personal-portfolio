@@ -40,6 +40,9 @@ export function SiteFooter() {
             <Link className="block text-muted transition hover:text-accent" href="/products/">
               Products
             </Link>
+            <Link className="block text-muted transition hover:text-accent" href="/newsletter/">
+              Newsletter
+            </Link>
             <a className="block text-muted transition hover:text-accent" href="/feed.xml">
               RSS Feed
             </a>

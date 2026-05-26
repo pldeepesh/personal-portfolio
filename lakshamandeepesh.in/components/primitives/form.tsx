@@ -12,7 +12,7 @@ type ErrorProps = {
 };
 
 const fieldControlClassName =
-  'w-full rounded-lg border border-border bg-background/72 px-4 py-3 text-sm text-ink outline-none transition placeholder:text-muted/70 focus:border-accent focus:ring-2 focus:ring-accent/25';
+  'w-full rounded-lg border border-border bg-[#05070d] px-4 py-3 text-sm text-ink outline-none transition placeholder:text-muted focus:border-accent focus:ring-2 focus:ring-accent';
 
 export function FormField({ children, className }: FieldProps) {
   return <div className={`space-y-2 ${className ?? ''}`}>{children}</div>;

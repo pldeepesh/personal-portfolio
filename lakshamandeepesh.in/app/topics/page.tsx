@@ -30,12 +30,13 @@ export default function TopicsPage() {
           src="/img/stock/topics-hero.jpg"
           width={2200}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#121a16]/80 via-[#1a231d]/55 to-transparent" />
+        <div className="absolute inset-0 bg-[#05070d]/58" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#05070d] via-[#05070d]/82 to-[#05070d]/36" />
         <div className="absolute inset-0 mx-auto flex w-full max-w-6xl items-end px-4 pb-10 sm:px-6 sm:pb-12">
-          <div className="max-w-2xl text-paper animate-reveal">
+          <div className="max-w-2xl animate-reveal text-white">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f8d7b9]">Topic Hubs</p>
             <h1 className="mt-3 font-heading text-4xl leading-tight sm:text-6xl">Cluster pages built for search intent depth</h1>
-            <p className="mt-4 text-base leading-7 text-paper/85 sm:text-lg">
+            <p className="mt-4 text-base leading-7 text-white/85 sm:text-lg">
               Each topic hub combines pillar content, supporting posts, and internal links to compound traffic and decision authority.
             </p>
           </div>

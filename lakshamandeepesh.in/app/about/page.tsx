@@ -1,218 +1,123 @@
+import { ArrowRight, Camera, CircuitBoard, Database, FlaskConical, LineChart, Rocket } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 
-import { EventLink } from '@/components/analytics/event-link';
-import { AuthorBadge } from '@/components/primitives/author-badge';
+import { ButtonLink } from '@/components/primitives/button';
+import { Card } from '@/components/primitives/card';
+import { Container } from '@/components/primitives/container';
 import { Section } from '@/components/primitives/section';
 import { createMetadata } from '@/lib/seo';
 
+const beliefs = [
+  'Data should reduce ambiguity.',
+  'AI should improve decisions, not create noise.',
+  'Dashboards should trigger action.',
+  'Experiments should compound learning.',
+  'Systems should outlive individuals.'
+];
+
+const workAreas = [
+  { title: 'Analytics systems', icon: LineChart },
+  { title: 'AI workflows', icon: CircuitBoard },
+  { title: 'Data platforms', icon: Database },
+  { title: 'Experimentation systems', icon: FlaskConical },
+  { title: 'Growth diagnostics', icon: Rocket }
+];
+
 export const metadata = createMetadata({
   title: 'About | Lakshmana Deepesh',
-  description:
-    'Background across data science leadership, photography, and product-minded web design with a practical execution style.',
+  description: 'About Lakshmana Deepesh, an AI, analytics, and decision systems leader building practical growth systems.',
   path: '/about/'
 });
-
-const craftAreas = [
-  {
-    title: 'Analytics and Decision Systems',
-    image: '/img/portfolio/portfolio-01-thumbnail.jpg',
-    description:
-      'I build experimentation and measurement frameworks that help teams move from intuition-heavy calls to repeatable, evidence-backed decisions.'
-  },
-  {
-    title: 'Photography and Storytelling',
-    image: '/img/portfolio/portfolio-08-thumbnail.jpg',
-    description:
-      'Photography keeps my creative muscles active and sharpens how I frame problems, notice detail, and communicate ideas with clarity.'
-  },
-  {
-    title: 'Product-minded Design',
-    image: '/img/portfolio/portfolio-04-thumbnail.jpg',
-    description:
-      'I care deeply about interfaces that feel intentional, readable, and useful. Good design is trust, speed, and usability.'
-  }
-];
-
-const timeline = [
-  {
-    period: 'Early years',
-    title: 'Cross-functional analytics foundation',
-    description:
-      'Built practical analytics across marketing, operations, and sales while learning how decisions really get made inside teams.'
-  },
-  {
-    period: 'Growth phase',
-    title: 'Leadership and experimentation systems',
-    description:
-      'Led teams and introduced experimentation discipline, metric guardrails, and repeatable reporting patterns for faster execution.'
-  },
-  {
-    period: 'Now',
-    title: 'AI systems and data governance into the future.',
-    description:
-      'Evolving into this new world of AI focused on growth analytics workflows.'
-  }
-];
 
 export default function AboutPage() {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-border">
+      <section className="relative overflow-hidden border-b border-border bg-background">
         <Image
-          alt="Cinematic city lights photograph"
-          className="h-[46vh] min-h-[360px] w-full object-cover"
+          alt="Night city photography by Lakshmana Deepesh"
+          className="absolute inset-0 h-full w-full object-cover opacity-32"
           height={1200}
           priority
           src="/img/portfolio/portfolio-03-large.jpg"
           width={2200}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#171c18]/75 via-[#1d241f]/55 to-transparent" />
-        <div className="absolute inset-0 mx-auto flex w-full max-w-6xl items-end px-4 pb-10 sm:px-6 sm:pb-12">
-          <div className="max-w-2xl text-paper animate-reveal">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#f8d7b9]">About</p>
-            <h1 className="mt-3 font-heading text-4xl leading-tight sm:text-6xl">Analyst’s rigor, creator’s lens</h1>
-            <p className="mt-4 text-base leading-7 text-paper/85 sm:text-lg">
-              I combine data science discipline with creative craft to build systems and experiences that people actually use.
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,7,13,0.97),rgba(5,7,13,0.72),rgba(5,7,13,0.38))]" />
+        <Container className="relative z-10 py-20 sm:py-24">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">About Lakshmana</p>
+            <h1 className="mt-4 font-heading text-4xl font-semibold leading-tight text-ink sm:text-6xl">
+              AI, analytics, and decision systems leader.
+            </h1>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-muted sm:text-lg">
+              I work at the intersection of business analytics, AI systems, growth strategy, and automation. Over the last decade, I have built dashboards, data pipelines, AI workflows, and decision systems for high-growth teams.
             </p>
           </div>
-        </div>
+        </Container>
       </section>
 
       <Section>
-        <div className="mx-auto max-w-6xl space-y-10">
-          <div className="grid gap-8 rounded-lg border border-border bg-surface p-6 shadow-editorial lg:grid-cols-[1.15fr_0.85fr] lg:p-8">
-            <div className="animate-reveal">
-              <h2 className="font-heading text-4xl leading-tight text-ink sm:text-5xl">The core story</h2>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-muted">
-                I am a data scientist with cross-functional experience across marketing, operations, sales, and business
-                analytics. I have led teams, built decision systems, and translated complex data into clear strategic action.
-              </p>
-              <p className="mt-4 max-w-2xl leading-8 text-muted">
-                This website is now publication-first, but it still carries the original DNA of my work: technical depth,
-                practical outcomes, and creative storytelling through design and photography.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <span className="rounded-full border border-border bg-surface px-4 py-2 text-xs font-semibold uppercase tracking-wide text-ink/80">
-                  Experimentation Systems
-                </span>
-                <span className="rounded-full border border-border bg-surface px-4 py-2 text-xs font-semibold uppercase tracking-wide text-ink/80">
-                  Growth Analytics
-                </span>
-                <span className="rounded-full border border-border bg-surface px-4 py-2 text-xs font-semibold uppercase tracking-wide text-ink/80">
-                  Product Design Thinking
-                </span>
-              </div>
+        <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <Card as="div">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Professional summary</p>
+            <h2 className="mt-4 font-heading text-3xl font-semibold text-ink">A practical builder for messy business systems.</h2>
+            <p className="mt-4 leading-8 text-muted">
+              My work usually starts with an unclear decision: why did conversion change, which source is improving, what should an experiment prove, or where can AI remove manual friction? I turn that ambiguity into metrics, workflows, and operating rhythms teams can use.
+            </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {workAreas.map((area) => {
+                const Icon = area.icon;
+                return (
+                  <div className="flex items-center gap-3 rounded-lg border border-border bg-background/70 p-3" key={area.title}>
+                    <Icon className="h-5 w-5 text-accent" />
+                    <span className="text-sm font-semibold text-ink">{area.title}</span>
+                  </div>
+                );
+              })}
             </div>
+          </Card>
 
-            <div className="grid grid-cols-2 gap-3 animate-reveal-delayed">
-              <div className="col-span-2 overflow-hidden rounded-xl">
-                <Image
-                  alt="Night city photography by Lakshmana Deepesh"
-                  className="h-52 w-full object-cover"
-                  height={420}
-                  src="/img/portfolio/portfolio-01-thumbnail.jpg"
-                  width={760}
-                />
-              </div>
-              <div className="overflow-hidden rounded-xl">
-                <Image
-                  alt="Landscape photography"
-                  className="h-44 w-full object-cover"
-                  height={300}
-                  src="/img/portfolio/portfolio-06-thumbnail.jpg"
-                  width={400}
-                />
-              </div>
-              <div className="overflow-hidden rounded-xl">
-                <Image
-                  alt="Festival lighting architecture photography"
-                  className="h-44 w-full object-cover"
-                  height={300}
-                  src="/img/portfolio/portfolio-08-thumbnail.jpg"
-                  width={400}
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {craftAreas.map((area, index) => (
-              <article
-                className="overflow-hidden rounded-lg border border-border bg-surface shadow-editorial animate-reveal"
-                key={area.title}
-                style={{ animationDelay: `${index * 120}ms` }}
-              >
-                <Image alt={area.title} className="h-44 w-full object-cover" height={280} src={area.image} width={520} />
-                <div className="space-y-3 p-5">
-                  <h3 className="font-heading text-2xl text-ink">{area.title}</h3>
-                  <p className="text-sm leading-7 text-muted">{area.description}</p>
+          <Card as="div">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">What I believe</p>
+            <div className="mt-5 space-y-3">
+              {beliefs.map((belief) => (
+                <div className="rounded-lg border border-border bg-background/70 p-4 text-sm font-semibold text-ink" key={belief}>
+                  {belief}
                 </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="rounded-lg border border-border bg-surface p-6 shadow-editorial sm:p-8">
-            <div className="mb-6 flex items-center justify-between gap-4">
-              <h2 className="font-heading text-3xl text-ink">Milestones</h2>
-              <Link className="text-sm font-semibold text-accent hover:text-ink" href="/blog/">
-                Read the full playbooks →
-              </Link>
+              ))}
             </div>
-            <div className="relative pl-6 sm:pl-8">
-              <div className="absolute left-1.5 top-0 h-full w-px bg-border sm:left-2" />
-              <div className="space-y-6">
-                {timeline.map((item) => (
-                  <article className="relative rounded-xl border border-border bg-paper p-5" key={item.title}>
-                    <span className="absolute -left-[1.95rem] top-6 h-3 w-3 rounded-full bg-accent sm:-left-[2.45rem]" />
-                    <p className="text-xs font-semibold uppercase tracking-wide text-accent">{item.period}</p>
-                    <h3 className="mt-1 font-heading text-2xl text-ink">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-7 text-muted">{item.description}</p>
-                  </article>
-                ))}
+          </Card>
+        </div>
+
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_0.9fr]">
+          <Card as="div">
+            <div className="flex items-start gap-4">
+              <Camera className="mt-1 h-6 w-6 text-accent" />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Human layer</p>
+                <h2 className="mt-3 font-heading text-3xl font-semibold text-ink">A maker mindset beyond dashboards.</h2>
+                <p className="mt-4 leading-8 text-muted">
+                  Photography, space imagery, Raspberry Pi projects, writing, and small automation experiments keep me close to the craft of noticing patterns, building prototypes, and explaining complex ideas clearly.
+                </p>
               </div>
             </div>
-          </div>
+          </Card>
 
-          <div className="grid gap-6 rounded-lg border border-border bg-surface p-6 shadow-editorial lg:grid-cols-[1fr_320px]">
-            <div>
-              <h2 className="font-heading text-3xl text-ink">How I collaborate</h2>
-              <p className="mt-3 leading-8 text-muted">
-                I work best with teams that value ownership, clarity, and iteration. My style combines structured analysis
-                with product context so execution stays fast and defensible.
-              </p>
-              <p className="mt-3 leading-8 text-muted">
-                If you are working on funnel conversion, pricing, attribution, or experimentation throughput, I focus on
-                building systems that scale beyond one-off wins.
-              </p>
-              <div className="mt-6">
-                <EventLink className="btn-primary" eventName="cta_click" eventParams={{ location: 'about', target: 'contact' }} href="/contact/">
-                  Work with me
-                </EventLink>
-              </div>
-            </div>
-
-            <div className="rounded-xl border border-border bg-surface p-5">
-              <h3 className="font-heading text-2xl text-ink">Current focus</h3>
-              <ul className="mt-3 space-y-3 text-sm leading-7 text-muted">
-                <li>Experiment design quality and guardrails</li>
-                <li>Growth analytics operating systems</li>
-                <li>SEO + content architecture for compounding traffic</li>
-                <li>Micro-SaaS foundations for data-informed teams</li>
-              </ul>
-            </div>
+          <div className="grid grid-cols-2 gap-3">
+            <Image alt="Landscape photography" className="h-44 rounded-lg object-cover" height={360} src="/img/portfolio/portfolio-06-thumbnail.jpg" width={520} />
+            <Image alt="Light and architecture photography" className="h-44 rounded-lg object-cover" height={360} src="/img/portfolio/portfolio-08-thumbnail.jpg" width={520} />
+            <Image alt="City photography" className="col-span-2 h-56 rounded-lg object-cover" height={420} src="/img/portfolio/portfolio-01-thumbnail.jpg" width={760} />
           </div>
+        </div>
 
-          <div className="rounded-lg border border-border bg-surface p-6 shadow-editorial">
-            <AuthorBadge
-              author={{
-                name: 'Lakshmana Deepesh Reddy',
-                slug: 'deepesh-reddy',
-                role: 'Data Scientist and Growth Analytics Leader',
-                bio: 'Builds decision systems for growth and product teams.'
-              }}
-            />
-          </div>
+        <div className="mt-8 rounded-lg border border-accent/30 bg-accent-soft/40 p-6 shadow-glow sm:p-8">
+          <h2 className="font-heading text-3xl font-semibold text-ink">Want to build a sharper operating system for decisions?</h2>
+          <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">
+            I help teams diagnose growth problems, design analytics systems, and apply AI where it creates real operating leverage.
+          </p>
+          <ButtonLink className="mt-6" href="/contact/">
+            Work with me
+            <ArrowRight className="h-4 w-4" />
+          </ButtonLink>
         </div>
       </Section>
     </>
