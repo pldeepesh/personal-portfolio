@@ -5,7 +5,8 @@ import { Card } from '@/components/primitives/card';
 import { Container } from '@/components/primitives/container';
 import { Section } from '@/components/primitives/section';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
-import { createMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/json-ld';
+import { createCollectionSchema, createMetadata } from '@/lib/seo';
 import { getAllCaseStudies } from '@/lib/work';
 
 export const metadata = createMetadata({
@@ -42,6 +43,13 @@ export default function WorkPage() {
       </section>
 
       <Section>
+        <JsonLd
+          data={createCollectionSchema({
+            title: 'Work',
+            description: 'Anonymized case studies across AI workflows, growth analytics, experimentation, and decision systems.',
+            path: '/work/'
+          })}
+        />
         <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Work', href: '/work/' }]} />
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -74,7 +82,13 @@ export default function WorkPage() {
                 ))}
               </div>
 
-              <ButtonLink className="mt-6 w-fit" href={`/work/${study.slug}/`} variant="secondary">
+              <ButtonLink
+                analyticsEvent="case_study_opened"
+                analyticsParams={{ location: 'work_index', slug: study.slug }}
+                className="mt-6 w-fit"
+                href={`/work/${study.slug}/`}
+                variant="secondary"
+              >
                 View Case Study
                 <ArrowRight className="h-4 w-4" />
               </ButtonLink>

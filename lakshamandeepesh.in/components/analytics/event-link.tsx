@@ -3,14 +3,14 @@
 import Link, { type LinkProps } from 'next/link';
 import type { AnchorHTMLAttributes, MouseEvent, ReactNode } from 'react';
 
-import { trackEvent } from '@/lib/analytics';
+import { type AnalyticsEventName, type AnalyticsParams, trackEvent } from '@/lib/analytics';
 
 type EventLinkProps = LinkProps &
   Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & {
   children: ReactNode;
   className?: string;
-  eventName: string;
-  eventParams?: Record<string, string | number>;
+  eventName: AnalyticsEventName;
+  eventParams?: AnalyticsParams;
 };
 
 export function EventLink({

@@ -28,8 +28,9 @@ export function CanvasShell({ children, className, camera, mobileFallback = true
 
   useEffect(() => {
     const isSmallScreen = mobileFallback && window.matchMedia('(max-width: 767px)').matches;
+    const forcedFallback = window.location.search.includes('force-webgl-fallback=1');
     setPreserveDrawingBuffer(window.location.search.includes('verify-canvas=1'));
-    setStatus(!shouldReduceMotion && !isSmallScreen && canUseWebGL() ? 'ready' : 'fallback');
+    setStatus(!forcedFallback && !shouldReduceMotion && !isSmallScreen && canUseWebGL() ? 'ready' : 'fallback');
   }, [mobileFallback, shouldReduceMotion]);
 
   if (status !== 'ready') {

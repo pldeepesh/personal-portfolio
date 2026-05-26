@@ -42,7 +42,7 @@ export function ContactForm() {
 
       if (!response.ok) throw new Error('Contact request failed');
 
-      trackEvent('contact_form_submit', { location: 'contact_page' });
+      trackEvent('contact_form_submitted', { location: 'contact_page' });
       setStatus('success');
       form.reset();
     } catch (_error) {
@@ -109,7 +109,7 @@ export function ContactForm() {
         <InlineError>{errors.message}</InlineError>
       </FormField>
 
-      <input aria-hidden="true" className="hidden" name="company_website" tabIndex={-1} type="text" />
+      <input aria-hidden="true" aria-label="Company website" className="hidden" name="company_website" tabIndex={-1} type="text" />
 
       <div className="flex flex-wrap items-center gap-3">
         <Button type="submit">

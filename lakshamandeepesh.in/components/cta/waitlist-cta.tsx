@@ -31,7 +31,7 @@ export function WaitlistCTA() {
 
       setStatus('success');
       event.currentTarget.reset();
-      trackEvent('waitlist_submit', { location: 'waitlist_cta' });
+      trackEvent('waitlist_signup_submitted', { location: 'waitlist_cta' });
     } catch (_error) {
       setStatus('error');
     }
@@ -45,6 +45,7 @@ export function WaitlistCTA() {
       </p>
       <form className="mt-4 grid gap-3 sm:grid-cols-2" onSubmit={handleSubmit}>
         <input
+          aria-label="Waitlist name"
           className="rounded-xl border border-border bg-paper px-4 py-3 text-sm text-ink outline-none transition focus:border-accent"
           name="name"
           placeholder="Your name"
@@ -52,6 +53,7 @@ export function WaitlistCTA() {
           type="text"
         />
         <input
+          aria-label="Waitlist email"
           className="rounded-xl border border-border bg-paper px-4 py-3 text-sm text-ink outline-none transition focus:border-accent"
           name="email"
           placeholder="Work email"
@@ -59,12 +61,18 @@ export function WaitlistCTA() {
           type="email"
         />
         <textarea
+          aria-label="Waitlist problem"
           className="sm:col-span-2 min-h-28 rounded-xl border border-border bg-paper px-4 py-3 text-sm text-ink outline-none transition focus:border-accent"
           name="problem"
           placeholder="What experiment or analytics problem should this product solve first?"
           required
         />
-        <button className="btn-primary sm:col-span-2" type="submit">
+        <button
+          className="btn-primary sm:col-span-2"
+          data-analytics-event="product_waitlist_clicked"
+          data-analytics-params='{"location":"waitlist_cta"}'
+          type="submit"
+        >
           Join waitlist
         </button>
       </form>

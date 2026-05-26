@@ -109,7 +109,7 @@ export default function TopicsPage() {
                   </EventLink>
                   <EventLink
                     className="btn-secondary"
-                    eventName="cta_click"
+                    eventName="cta_clicked"
                     eventParams={{ location: 'topics_index', target: topic.pillarSlug }}
                     href={`/blog/${topic.pillarSlug}/`}
                   >

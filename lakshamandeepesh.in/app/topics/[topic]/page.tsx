@@ -115,7 +115,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
               <div className="mt-5 flex flex-wrap gap-3">
                 <EventLink
                   className="btn-primary"
-                  eventName="cta_click"
+                  eventName="cta_clicked"
                   eventParams={{ location: 'topic_hub', target: pillarPost.slug }}
                   href={`/blog/${pillarPost.slug}/`}
                 >

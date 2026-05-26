@@ -21,14 +21,14 @@ export function LeadCTA({
         <Link
           className="btn-primary"
           href="/contact/"
-          onClick={() => trackEvent('cta_click', { location: 'lead_cta', target: 'contact' })}
+          onClick={() => trackEvent('cta_strategy_call_clicked', { location: 'lead_cta', target: 'contact' })}
         >
           Book a strategy call
         </Link>
         <Link
           className="btn-secondary"
           href="/work/"
-          onClick={() => trackEvent('cta_click', { location: 'lead_cta', target: 'work' })}
+          onClick={() => trackEvent('cta_clicked', { location: 'lead_cta', target: 'work' })}
         >
           View case studies
         </Link>

@@ -129,7 +129,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
                 <h2 className="mt-3 font-heading text-2xl text-ink">{relatedTool.title}</h2>
                 <p className="mt-2 text-sm leading-6 text-muted">{relatedTool.description}</p>
-                <ButtonLink className="mt-4 w-fit px-4 py-2" href={`/tools/#${relatedTool.slug}`}>
+                <ButtonLink className="mt-4 w-fit px-4 py-2" href={`/tools/${relatedTool.slug}/`}>
                   {relatedTool.ctaLabel} <ArrowRight aria-hidden="true" size={15} />
                 </ButtonLink>
               </div>
@@ -143,7 +143,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
                 <h2 className="mt-3 font-heading text-2xl text-ink">{relatedCaseStudy.title}</h2>
                 <p className="mt-2 text-sm leading-6 text-muted">{relatedCaseStudy.summary}</p>
-                <ButtonLink className="mt-4 w-fit px-4 py-2" href={`/work/${relatedCaseStudy.slug}/`} variant="secondary">
+                <ButtonLink
+                  analyticsEvent="case_study_opened"
+                  analyticsParams={{ location: 'blog_related_case_study', slug: relatedCaseStudy.slug }}
+                  className="mt-4 w-fit px-4 py-2"
+                  href={`/work/${relatedCaseStudy.slug}/`}
+                  variant="secondary"
+                >
                   Read case study <ArrowRight aria-hidden="true" size={15} />
                 </ButtonLink>
               </div>
@@ -160,10 +166,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               If this problem is showing up inside your funnel, dashboard, or experimentation process, the next move is a focused diagnostic rather than another generic report.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <ButtonLink href={post.cta?.href ?? '/contact/'}>
+              <ButtonLink
+                analyticsEvent="blog_cta_clicked"
+                analyticsParams={{ location: 'blog_article_cta', slug: post.slug, target: post.cta?.href ?? '/contact/' }}
+                href={post.cta?.href ?? '/contact/'}
+              >
                 {post.cta?.label ?? 'Book a strategy call'} <ArrowRight aria-hidden="true" size={15} />
               </ButtonLink>
-              <ButtonLink href={`/topics/${post.topic}/`} variant="secondary">
+              <ButtonLink
+                analyticsEvent="blog_cta_clicked"
+                analyticsParams={{ location: 'blog_article_topic_cta', slug: post.slug, target: `/topics/${post.topic}/` }}
+                href={`/topics/${post.topic}/`}
+                variant="secondary"
+              >
                 Explore {topicLabel}
               </ButtonLink>
             </div>

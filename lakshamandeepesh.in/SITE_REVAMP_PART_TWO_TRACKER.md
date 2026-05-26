@@ -40,9 +40,9 @@ The site must:
 | 3 | Homepage Rebuild | Complete |
 | 4 | Content Model and Page Templates | Complete |
 | 5 | Blog, Topics, and SEO Preservation | Complete |
-| 6 | Free Tools Platform and Funnel Tool | Not started |
-| 7 | Analytics, Forms, and Conversion Tracking | Not started |
-| 8 | SEO, Accessibility, Performance, and Launch QA | Not started |
+| 6 | Free Tools Platform and Funnel Tool | Complete |
+| 7 | Analytics, Forms, and Conversion Tracking | Complete |
+| 8 | SEO, Accessibility, Performance, and Launch QA | Complete with launch caveats |
 
 ## Phase 0: Tracker + Baseline Audit
 
@@ -613,52 +613,67 @@ Phase 1 form-handler note: server-side Resend handlers are blocked by the curren
 
 ### Tools Directory
 
-- [ ] Add `/tools`.
-- [ ] Use title: "Free Analytics, Growth, and AI Tools".
-- [ ] Add category-ready tool cards.
-- [ ] Add live and coming-soon states.
-- [ ] Add CTA paths to strategy call and newsletter.
+- [x] Add `/tools`.
+- [x] Use title: "Free Analytics, Growth, and AI Tools".
+- [x] Add category-ready tool cards.
+- [x] Add live and coming-soon states.
+- [x] Add CTA paths to strategy call and newsletter.
 
 ### Tool Detail Template
 
-- [ ] Add `/tools/[slug]`.
-- [ ] Add tool hero.
-- [ ] Add tool interface.
-- [ ] Add explanation.
-- [ ] Add example output.
-- [ ] Add recommended next steps.
-- [ ] Add result lead capture.
-- [ ] Add related articles.
-- [ ] Add related tools.
-- [ ] Add strategy call CTA.
-- [ ] Add schema where appropriate.
+- [x] Add `/tools/[slug]`.
+- [x] Add tool hero.
+- [x] Add tool interface.
+- [x] Add explanation.
+- [x] Add example output.
+- [x] Add recommended next steps.
+- [x] Add result lead capture.
+- [x] Add related articles.
+- [x] Add related tools.
+- [x] Add strategy call CTA.
+- [x] Add schema where appropriate.
 
 ### Funnel Drop Diagnostic Tool
 
-- [ ] Inputs: previous/current leads.
-- [ ] Inputs: previous/current conversion rate.
-- [ ] Inputs: previous/current revenue.
-- [ ] Inputs: funnel stages.
-- [ ] Optional inputs: source, city/type, channel, cohort.
-- [ ] Output: where the drop happened.
-- [ ] Output: estimated loss from volume drop.
-- [ ] Output: estimated loss from conversion drop.
-- [ ] Output: diagnostic questions.
-- [ ] Output: recommended next actions.
-- [ ] CTA: Book a Strategy Call.
-- [ ] CTA: Email result.
-- [ ] Event: tool started.
-- [ ] Event: tool completed.
-- [ ] Event: result copied.
-- [ ] Event: result emailed.
+- [x] Inputs: previous/current leads.
+- [x] Inputs: previous/current conversion rate.
+- [x] Inputs: previous/current revenue.
+- [x] Inputs: funnel stages.
+- [x] Optional inputs: source, city/type, channel, cohort.
+- [x] Output: where the drop happened.
+- [x] Output: estimated loss from volume drop.
+- [x] Output: estimated loss from conversion drop.
+- [x] Output: diagnostic questions.
+- [x] Output: recommended next actions.
+- [x] CTA: Book a Strategy Call.
+- [x] CTA: Email result.
+- [x] Event: tool started.
+- [x] Event: tool completed.
+- [x] Event: result copied.
+- [x] Event: result emailed.
 
 ### Coming-Soon Tools
 
-- [ ] A/B Test Readiness Checker.
-- [ ] CAC / ROAS Calculator.
-- [ ] Lead Scoring Template Generator.
-- [ ] Dashboard KPI Planner.
-- [ ] AI Use Case Prioritization Matrix.
+- [x] A/B Test Readiness Checker.
+- [x] CAC / ROAS Calculator.
+- [x] Lead Scoring Template Generator.
+- [x] Dashboard KPI Planner.
+- [x] AI Use Case Prioritization Matrix.
+
+### Phase 6 Verification
+
+- `npm run validate:content` passed for 10 posts.
+- `npm run build` passed and generated 49 static routes.
+- Static export now includes `/tools/[slug]/` for the live Funnel Drop Diagnostic and all coming-soon tools.
+- Playwright CLI verified `/tools/`, `/tools/funnel-drop-diagnostic/`, and `/tools/cac-roas-calculator/` on desktop and mobile.
+- Funnel tool QA: example inputs calculate successfully, output renders volume loss, conversion loss, drop location, diagnostic questions, recommended actions, copy result, email result, strategy call CTA, and newsletter CTA.
+- Page QA: required section text rendered, no horizontal overflow, no offscreen text/card candidates, and no console errors.
+- Verification screenshots:
+  - `output/playwright/phase6-tools-desktop.png`
+  - `output/playwright/phase6-funnel-desktop-final.png`
+  - `output/playwright/phase6-funnel-mobile-final.png`
+  - `output/playwright/phase6-coming-desktop.png`
+  - `output/playwright/phase6-coming-mobile.png`
 
 ## Phase 7: Analytics, Forms, and Conversion Tracking
 
@@ -670,169 +685,215 @@ Phase 1 form-handler note: server-side Resend handlers are blocked by the curren
 
 ### Events
 
-- [ ] `cta_strategy_call_clicked`
-- [ ] `case_study_opened`
-- [ ] `tool_started`
-- [ ] `tool_completed`
-- [ ] `tool_result_copied`
-- [ ] `tool_result_downloaded`
-- [ ] `newsletter_signup_submitted`
-- [ ] `contact_form_submitted`
-- [ ] `waitlist_signup_submitted`
-- [ ] `blog_cta_clicked`
-- [ ] `product_waitlist_clicked`
+- [x] `cta_strategy_call_clicked`
+- [x] `case_study_opened`
+- [x] `tool_started`
+- [x] `tool_completed`
+- [x] `tool_result_copied`
+- [x] `tool_result_downloaded`
+- [x] `newsletter_signup_submitted`
+- [x] `contact_form_submitted`
+- [x] `waitlist_signup_submitted`
+- [x] `blog_cta_clicked`
+- [x] `product_waitlist_clicked`
 
 ### Analytics
 
-- [ ] Update `EventLink` or analytics utility for new event names.
-- [ ] Keep GA4 working.
-- [ ] Add Microsoft Clarity only if an ID is configured.
-- [ ] Track all primary CTAs.
-- [ ] Track all secondary CTAs.
-- [ ] Track form success states.
-- [ ] Track tool completion events.
+- [x] Update `EventLink` or analytics utility for new event names.
+- [x] Keep GA4 working.
+- [x] Add Microsoft Clarity only if an ID is configured.
+- [x] Track all primary CTAs.
+- [x] Track all secondary CTAs.
+- [x] Track form success states.
+- [x] Track tool completion events.
+
+### Phase 7 Verification
+
+- `npm run validate:content` passed for 10 posts.
+- `npm run build` passed and generated 49 static routes.
+- Analytics utility now uses a typed event-name list, keeps GA4 `sendGAEvent`, and emits a local `site:analytics` browser event for QA visibility.
+- Microsoft Clarity script renders only when `NEXT_PUBLIC_CLARITY_PROJECT_ID` is configured.
+- Playwright CLI verified event emission for strategy-call CTA, case-study open, blog CTA, product waitlist click, tool started, tool completed, tool result copied, and tool result downloaded.
+- Contact form QA: missing required fields still render validation feedback.
+- Tool QA: desktop/mobile result flow renders successfully with copy/download controls and no horizontal overflow.
+- Verification screenshots:
+  - `output/playwright/phase7-tool-desktop.png`
+  - `output/playwright/phase7-tool-mobile-final.png`
 
 ## Phase 8: SEO, Accessibility, Performance, and Launch QA
 
 ### Technical SEO
 
-- [ ] Dynamic metadata for all pages.
-- [ ] Canonical URLs.
-- [ ] OpenGraph tags.
-- [ ] Twitter cards.
-- [ ] Sitemap includes new routes.
-- [ ] Robots preserved.
-- [ ] RSS feed preserved.
-- [ ] Breadcrumb schema.
-- [ ] Article schema.
-- [ ] Collection schema.
-- [ ] Tool/schema support.
+- [x] Dynamic metadata for all pages.
+- [x] Canonical URLs.
+- [x] OpenGraph tags.
+- [x] Twitter cards.
+- [x] Sitemap includes new routes.
+- [x] Robots preserved.
+- [x] RSS feed preserved.
+- [x] Breadcrumb schema.
+- [x] Article schema.
+- [x] Collection schema.
+- [x] Tool/schema support.
 
 ### Migration SEO
 
-- [ ] Preserve blog URLs.
-- [ ] Preserve topic URLs where possible.
-- [ ] Add redirects for changed URLs.
-- [ ] Confirm no high-value content is deleted.
-- [ ] Validate sitemap output.
-- [ ] Validate RSS output.
+- [x] Preserve blog URLs.
+- [x] Preserve topic URLs where possible.
+- [ ] Add redirects for changed URLs. Static export cannot serve server redirects; legacy archive routes remain as noindex bridge pages.
+- [x] Confirm no high-value content is deleted.
+- [x] Validate sitemap output.
+- [x] Validate RSS output.
 
 ### Confidentiality QA
 
-- [ ] Search for forbidden names.
-- [ ] Search for internal project names.
-- [ ] Search for internal table names.
-- [ ] Search for private metrics.
-- [ ] Search for exact client names.
-- [ ] Replace sensitive references with generalized language.
+- [x] Search for forbidden names.
+- [x] Search for internal project names.
+- [x] Search for internal table names.
+- [x] Search for private metrics.
+- [x] Search for exact client names.
+- [x] Replace sensitive references with generalized language.
 
 ### Accessibility QA
 
-- [ ] Keyboard navigation.
-- [ ] Visible focus states.
-- [ ] Form labels.
-- [ ] Form errors.
-- [ ] Reduced motion.
-- [ ] Color contrast.
-- [ ] Semantic headings.
-- [ ] Skip navigation.
+- [x] Keyboard navigation.
+- [x] Visible focus states.
+- [x] Form labels.
+- [x] Form errors.
+- [x] Reduced motion.
+- [x] Color contrast.
+- [x] Semantic headings.
+- [x] Skip navigation.
 
 ### Performance QA
 
-- [ ] Lighthouse Performance target: 85+.
-- [ ] Lighthouse SEO target: 95+.
-- [ ] Lighthouse Accessibility target: 95+.
-- [ ] Lighthouse Best Practices target: 95+.
-- [ ] Validate mobile 3D fallback.
-- [ ] Validate WebGL unsupported fallback.
-- [ ] Avoid unnecessary JavaScript.
-- [ ] Lazy-load heavy components.
+- [ ] Lighthouse Performance target: 85+. Blog/contact pass; homepage is 83 and tool page is 81 on Lighthouse mobile throttling after optimization.
+- [x] Lighthouse SEO target: 95+.
+- [x] Lighthouse Accessibility target: 95+.
+- [x] Lighthouse Best Practices target: 95+.
+- [x] Validate mobile 3D fallback.
+- [x] Validate WebGL unsupported fallback.
+- [x] Avoid unnecessary JavaScript.
+- [x] Lazy-load heavy components.
 
 ### Browser QA
 
-- [ ] Desktop Chrome.
-- [ ] Desktop Safari.
-- [ ] Desktop Firefox.
-- [ ] Mobile Safari.
-- [ ] Mobile Chrome.
-- [ ] No horizontal scroll.
-- [ ] No text overlap.
-- [ ] Tool calculations stable.
-- [ ] Forms submit successfully.
-- [ ] Analytics events fire.
+- [x] Desktop Chrome.
+- [ ] Desktop Safari. Not available in this CLI environment.
+- [ ] Desktop Firefox. Not available in this CLI environment.
+- [ ] Mobile Safari. Not available in this CLI environment.
+- [x] Mobile Chrome.
+- [x] No horizontal scroll.
+- [x] No text overlap.
+- [x] Tool calculations stable.
+- [ ] Forms submit successfully. Feedback paths work; true success requires configured external form endpoints.
+- [x] Analytics events fire.
 
 ## Public Interfaces and Data Changes
 
 ### Add Routes
 
-- [ ] `/tools/`
-- [ ] `/tools/[slug]/`
-- [ ] `/newsletter/`
+- [x] `/tools/`
+- [x] `/tools/[slug]/`
+- [x] `/newsletter/`
 
 ### Keep Routes
 
-- [ ] `/`
-- [ ] `/about/`
-- [ ] `/work/`
-- [ ] `/work/[slug]/`
-- [ ] `/blog/`
-- [ ] `/blog/[slug]/`
-- [ ] `/topics/`
-- [ ] `/topics/[topic]/`
-- [ ] `/products/`
-- [ ] `/contact/`
+- [x] `/`
+- [x] `/about/`
+- [x] `/work/`
+- [x] `/work/[slug]/`
+- [x] `/blog/`
+- [x] `/blog/[slug]/`
+- [x] `/topics/`
+- [x] `/topics/[topic]/`
+- [x] `/products/`
+- [x] `/contact/`
 
 ### Add or Extend Types
 
-- [ ] `CaseStudy`
-- [ ] `ToolDefinition`
-- [ ] `ToolResult`
-- [ ] `LeadFormPayload`
-- [ ] `NewsletterSignupPayload`
-- [ ] `WaitlistSignupPayload`
+- [x] `CaseStudy`
+- [x] `ToolDefinition`
+- [x] `ToolResult`
+- [x] `LeadFormPayload`
+- [x] `NewsletterSignupPayload`
+- [x] `WaitlistSignupPayload`
 
 ## Test Plan
 
-- [ ] Run content validation.
-- [ ] Run TypeScript/build validation.
-- [ ] Run lint if available and compatible.
-- [ ] Run confidentiality text search.
-- [ ] Run manual QA for all routes.
-- [ ] Capture browser screenshots for homepage, work, blog article, tools, products, contact, and mobile homepage.
-- [ ] Run Lighthouse on homepage.
-- [ ] Run Lighthouse on blog article page.
-- [ ] Run Lighthouse on tool page.
-- [ ] Run Lighthouse on contact page.
-- [ ] Test reduced-motion mode.
-- [ ] Test WebGL fallback.
-- [ ] Test form success paths.
-- [ ] Test form error paths.
-- [ ] Test Funnel Drop Diagnostic with normal values.
-- [ ] Test Funnel Drop Diagnostic with zero values.
-- [ ] Test Funnel Drop Diagnostic with missing values.
-- [ ] Test Funnel Drop Diagnostic with extreme values.
-- [ ] Test sitemap generation.
-- [ ] Test RSS generation.
+- [x] Run content validation.
+- [x] Run TypeScript/build validation.
+- [ ] Run lint if available and compatible. Current script uses removed `next lint` command under Next 16.
+- [x] Run confidentiality text search.
+- [x] Run manual QA for all routes.
+- [x] Capture browser screenshots for homepage, work, blog article, tools, products, contact, and mobile homepage.
+- [x] Run Lighthouse on homepage.
+- [x] Run Lighthouse on blog article page.
+- [x] Run Lighthouse on tool page.
+- [x] Run Lighthouse on contact page.
+- [x] Test reduced-motion mode.
+- [x] Test WebGL fallback.
+- [ ] Test form success paths. Requires configured external form endpoints.
+- [x] Test form error paths.
+- [x] Test Funnel Drop Diagnostic with normal values.
+- [x] Test Funnel Drop Diagnostic with zero values.
+- [x] Test Funnel Drop Diagnostic with missing values.
+- [x] Test Funnel Drop Diagnostic with extreme values.
+- [x] Test sitemap generation.
+- [x] Test RSS generation.
 
 ## Acceptance Criteria
 
-- [ ] Site feels premium, cinematic, restrained, and not template-like.
-- [ ] Homepage clearly positions Lakshmana as an AI, analytics, experimentation, and decision-systems leader.
-- [ ] 3D enhances the story and does not block readability.
-- [ ] 3D does not hurt mobile usability.
-- [ ] Existing blog content and SEO value are preserved.
-- [ ] Case studies are anonymized and credible.
-- [ ] `/tools` exists.
-- [ ] Funnel Drop Diagnostic Tool is live.
-- [ ] Contact form works.
-- [ ] Newsletter form works.
-- [ ] Waitlist form works.
-- [ ] Tool lead capture works.
-- [ ] Analytics events are implemented.
-- [ ] No forbidden employer/client names appear publicly.
-- [ ] Site is responsive.
-- [ ] Site is accessible.
-- [ ] Site is production-ready.
+- [x] Site feels premium, cinematic, restrained, and not template-like.
+- [x] Homepage clearly positions Lakshmana as an AI, analytics, experimentation, and decision-systems leader.
+- [x] 3D enhances the story and does not block readability.
+- [x] 3D does not hurt mobile usability.
+- [x] Existing blog content and SEO value are preserved.
+- [x] Case studies are anonymized and credible.
+- [x] `/tools` exists.
+- [x] Funnel Drop Diagnostic Tool is live.
+- [ ] Contact form works. Requires configured external form endpoint for success.
+- [ ] Newsletter form works. Requires configured external form endpoint for success.
+- [ ] Waitlist form works. Requires configured external form endpoint for success.
+- [x] Tool lead capture works.
+- [x] Analytics events are implemented.
+- [x] No forbidden employer/client names appear publicly.
+- [x] Site is responsive.
+- [x] Site is accessible.
+- [ ] Site is production-ready. Remaining launch caveats: external form endpoints, static-export redirects, and Lighthouse mobile performance on homepage/tool page.
+
+### Phase 8 Verification
+
+- `npm run validate:content` passed for 10 posts.
+- `npm run build` passed and generated 49 static routes.
+- `npm run lint` did not run because the script still calls `next lint`, which is no longer available in Next 16.
+- Lighthouse scores:
+  - Homepage: Performance 83, Accessibility 100, Best Practices 100, SEO 100.
+  - Blog article: Performance 86, Accessibility 96, Best Practices 100, SEO 100.
+  - Funnel tool: Performance 81, Accessibility 100, Best Practices 100, SEO 100.
+  - Contact: Performance 89, Accessibility 100, Best Practices 100, SEO 100.
+- Performance optimizations made during Phase 8:
+  - Removed client-side reveal gating from the homepage hero LCP text.
+  - Made GA4 load only when `NEXT_PUBLIC_GA_MEASUREMENT_ID` is configured.
+  - Prevented mobile, reduced-motion, and forced-fallback sessions from importing the heavy Three.js scene.
+  - Added `force-webgl-fallback=1` for deterministic WebGL fallback QA.
+- Playwright CLI verified desktop/mobile route health for `/`, `/about/`, `/work/`, `/work/funnel-diagnostics-operating-model/`, `/blog/`, `/blog/acquisition-funnel-diagnostics/`, `/topics/`, `/topics/growth-analytics/`, `/tools/`, `/tools/funnel-drop-diagnostic/`, `/products/`, `/contact/`, and `/newsletter/`.
+- Playwright CLI verified metadata/canonical/OG/Twitter tags, JSON-LD presence, skip navigation, no unlabeled form controls, no horizontal overflow, and no offscreen text/card candidates on the checked routes.
+- Playwright CLI verified mobile 3D fallback, reduced-motion fallback, and forced WebGL fallback.
+- Playwright CLI verified contact form error feedback, newsletter/waitlist feedback paths, sitemap output, RSS output, analytics events, and Funnel Drop Diagnostic normal/zero/missing/extreme cases.
+- Confidentiality scans found no forbidden client/employer terms or internal/private placeholder terms in `app`, `components`, `lib`, or `content`.
+- Verification artifacts:
+  - `output/lighthouse-home.json`
+  - `output/lighthouse-blog.json`
+  - `output/lighthouse-tool.json`
+  - `output/lighthouse-contact.json`
+  - `output/playwright/phase8-home-desktop.png`
+  - `output/playwright/phase8-home-mobile.png`
+  - `output/playwright/phase8-work-desktop.png`
+  - `output/playwright/phase8-blog-acquisition-funnel-diagnostics-desktop.png`
+  - `output/playwright/phase8-tools-funnel-drop-diagnostic-desktop.png`
+  - `output/playwright/phase8-products-desktop.png`
+  - `output/playwright/phase8-contact-desktop.png`
 
 ## Implementation Notes
 

@@ -23,7 +23,6 @@ import Link from 'next/link';
 
 import { PostCard } from '@/components/blog/post-card';
 import { WaitlistCTA } from '@/components/cta/waitlist-cta';
-import { ScrollReveal } from '@/components/motion/ScrollReveal';
 import { ButtonLink } from '@/components/primitives/button';
 import { Card } from '@/components/primitives/card';
 import { Container } from '@/components/primitives/container';
@@ -184,29 +183,27 @@ function Hero() {
       <div className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(to_top,var(--color-background),transparent)]" />
       <Container className="relative z-10 flex min-h-[calc(100vh-4rem)] items-center py-20">
         <div className="max-w-3xl">
-          <ScrollReveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">AI, analytics, experimentation, decision systems</p>
-            <h1 className="mt-5 font-heading text-4xl font-semibold leading-tight text-ink sm:text-5xl lg:text-7xl">
-              Building AI-powered analytics systems for better business decisions.
-            </h1>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-muted sm:text-lg">
-              I help teams turn scattered data, unclear funnels, and manual workflows into decision systems that improve growth, speed, and clarity.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <ButtonLink href={siteConfig.calendarUrl}>
-                <CalendarDays className="h-4 w-4" />
-                Book a Strategy Call
-              </ButtonLink>
-              <ButtonLink href="/work/" variant="secondary">
-                <BriefcaseBusiness className="h-4 w-4" />
-                View Case Studies
-              </ButtonLink>
-              <Link className="inline-flex min-h-11 items-center gap-2 px-2 text-sm font-semibold text-muted transition hover:text-accent" href="/blog/">
-                Explore Articles
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </ScrollReveal>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">AI, analytics, experimentation, decision systems</p>
+          <h1 className="mt-5 font-heading text-4xl font-semibold leading-tight text-ink sm:text-5xl lg:text-7xl">
+            Building AI-powered analytics systems for better business decisions.
+          </h1>
+          <p className="mt-6 max-w-2xl text-base leading-8 text-muted sm:text-lg">
+            I help teams turn scattered data, unclear funnels, and manual workflows into decision systems that improve growth, speed, and clarity.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <ButtonLink href={siteConfig.calendarUrl}>
+              <CalendarDays className="h-4 w-4" />
+              Book a Strategy Call
+            </ButtonLink>
+            <ButtonLink href="/work/" variant="secondary">
+              <BriefcaseBusiness className="h-4 w-4" />
+              View Case Studies
+            </ButtonLink>
+            <Link className="inline-flex min-h-11 items-center gap-2 px-2 text-sm font-semibold text-muted transition hover:text-accent" href="/blog/">
+              Explore Articles
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </Container>
       <a

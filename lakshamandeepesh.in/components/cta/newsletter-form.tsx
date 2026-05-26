@@ -31,7 +31,7 @@ export function NewsletterForm() {
 
       setStatus('success');
       event.currentTarget.reset();
-      trackEvent('newsletter_submit', { location: 'newsletter_form' });
+      trackEvent('newsletter_signup_submitted', { location: 'newsletter_form' });
     } catch (_error) {
       setStatus('error');
     }
@@ -43,6 +43,7 @@ export function NewsletterForm() {
       <p className="mt-2 text-sm text-muted">One practical article digest each week. No fluff, no spam.</p>
       <form className="mt-4 flex flex-col gap-3 sm:flex-row" onSubmit={handleSubmit}>
         <input
+          aria-label="Newsletter email"
           className="w-full rounded-xl border border-border bg-paper px-4 py-3 text-sm text-ink outline-none transition focus:border-accent"
           name="email"
           placeholder="you@company.com"

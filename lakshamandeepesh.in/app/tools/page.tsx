@@ -4,11 +4,12 @@ import { ButtonLink } from '@/components/primitives/button';
 import { Card } from '@/components/primitives/card';
 import { CtaGroup } from '@/components/primitives/cta-group';
 import { Section } from '@/components/primitives/section';
-import { createMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/json-ld';
+import { createCollectionSchema, createMetadata } from '@/lib/seo';
 import { getAllTools } from '@/lib/tools';
 
 export const metadata = createMetadata({
-  title: 'Tools | Lakshmana Deepesh',
+  title: 'Free Analytics, Growth, and AI Tools | Lakshmana Deepesh',
   description: 'Free analytics, growth, experimentation, and AI tools for better business decisions.',
   path: '/tools/'
 });
@@ -18,12 +19,17 @@ export default function ToolsPage() {
 
   return (
     <Section>
+      <JsonLd
+        data={createCollectionSchema({
+          title: 'Free Analytics, Growth, and AI Tools',
+          description: 'Free analytics, growth, experimentation, and AI tools for better business decisions.',
+          path: '/tools/'
+        })}
+      />
       <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="space-y-6">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Tools</p>
-          <h1 className="font-heading text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-            Free analytics, growth, and AI tools
-          </h1>
+          <h1 className="font-heading text-4xl font-semibold leading-tight text-ink sm:text-5xl">Free Analytics, Growth, and AI Tools</h1>
           <p className="max-w-2xl text-lg leading-8 text-muted">
             Practical diagnostics for operators, marketers, analysts, and founders who need faster decision clarity.
           </p>
@@ -60,10 +66,10 @@ export default function ToolsPage() {
                   </div>
                   <ButtonLink
                     className="mt-5 w-fit px-4 py-2"
-                    href={`/tools/#${tool.slug}`}
+                    href={`/tools/${tool.slug}/`}
                     variant={tool.status === 'live' ? 'primary' : 'secondary'}
                   >
-                    {tool.ctaLabel}
+                    {tool.ctaLabel} <ArrowRight aria-hidden="true" size={15} />
                   </ButtonLink>
                 </div>
               </div>
