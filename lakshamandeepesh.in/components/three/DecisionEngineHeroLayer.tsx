@@ -25,10 +25,14 @@ export function DecisionEngineHeroLayer() {
   const [shouldLoadScene, setShouldLoadScene] = useState(false);
 
   useEffect(() => {
-    const isSmallScreen = window.matchMedia('(max-width: 767px)').matches;
-    const forcedFallback = window.location.search.includes('force-webgl-fallback=1');
+    const frame = window.requestAnimationFrame(() => {
+      const isSmallScreen = window.matchMedia('(max-width: 767px)').matches;
+      const forcedFallback = window.location.search.includes('force-webgl-fallback=1');
 
-    setShouldLoadScene(!forcedFallback && !shouldReduceMotion && !isSmallScreen && canUseWebGL());
+      setShouldLoadScene(!forcedFallback && !shouldReduceMotion && !isSmallScreen && canUseWebGL());
+    });
+
+    return () => window.cancelAnimationFrame(frame);
   }, [shouldReduceMotion]);
 
   if (!shouldLoadScene) {

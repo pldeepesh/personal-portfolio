@@ -149,6 +149,7 @@ export function FunnelDropDiagnostic() {
   const [started, setStarted] = useState(false);
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState('');
+  const [emailStatus, setEmailStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const canCalculate = useMemo(
     () =>
@@ -169,6 +170,7 @@ export function FunnelDropDiagnostic() {
 
     setState((current) => ({ ...current, [field]: value }));
     setError('');
+    setEmailStatus('idle');
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -187,6 +189,7 @@ export function FunnelDropDiagnostic() {
     const nextResult = diagnose(state);
     setResult(nextResult);
     setCopied(false);
+    setEmailStatus('idle');
     trackEvent('tool_completed', { tool: 'funnel-drop-diagnostic' });
   }
 
@@ -226,13 +229,41 @@ export function FunnelDropDiagnostic() {
     trackEvent('tool_result_downloaded', { tool: 'funnel-drop-diagnostic' });
   }
 
-  function emailResult() {
+  async function emailResult() {
     if (!result) return;
 
-    const subject = encodeURIComponent('Funnel Drop Diagnostic Result');
-    const body = encodeURIComponent(`${result.headline}\n\n${result.summary}\n\n${result.stageFinding}\n\nRecommended actions:\n- ${result.actions.join('\n- ')}`);
-    trackEvent('tool_result_emailed', { tool: 'funnel-drop-diagnostic' });
-    window.location.href = `mailto:${state.email.trim()}?subject=${subject}&body=${body}`;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email.trim())) {
+      setEmailStatus('error');
+      setError('Add a valid email before sending the result.');
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/tools/funnel-drop-diagnostic/result', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          toolSlug: 'funnel-drop-diagnostic',
+          email: state.email.trim(),
+          headline: result.headline,
+          summary: result.summary,
+          stageFinding: result.stageFinding,
+          diagnostics: result.questions,
+          recommendedActions: result.actions,
+          company_website: ''
+        })
+      });
+
+      if (!response.ok) throw new Error('Tool result delivery failed');
+
+      setEmailStatus('success');
+      trackEvent('tool_result_emailed', { tool: 'funnel-drop-diagnostic' });
+    } catch {
+      setEmailStatus('error');
+      setError('Could not send this result right now. Please download or copy it instead.');
+    }
   }
 
   return (
@@ -378,6 +409,7 @@ export function FunnelDropDiagnostic() {
                 Email result
               </Button>
             </div>
+            {emailStatus === 'success' ? <p className="text-sm font-semibold text-success">Result sent. I will follow up if useful.</p> : null}
           </div>
         ) : (
           <div className="mt-4 rounded-lg border border-dashed border-border p-5">

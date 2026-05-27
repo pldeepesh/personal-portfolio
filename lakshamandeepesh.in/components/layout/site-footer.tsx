@@ -12,7 +12,7 @@ export function SiteFooter() {
           <h2 className="font-heading text-2xl font-semibold text-ink">{siteConfig.siteName}</h2>
           <p className="mt-3 max-w-md text-sm leading-6 text-muted">{siteConfig.siteDescription}</p>
           <p className="mt-4 text-xs text-muted">
-            © {new Date().getFullYear()} {siteConfig.authorName}. Built with Next.js and shipped via static export.
+            © {new Date().getFullYear()} {siteConfig.authorName}. Built with Next.js.
           </p>
         </div>
 

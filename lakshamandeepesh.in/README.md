@@ -1,4 +1,4 @@
-# lakshmanadeepesh.in (Next.js Static Export)
+# lakshmanadeepesh.in
 
 Editorial-first website focused on experimentation and growth analytics.
 
@@ -6,27 +6,37 @@ Editorial-first website focused on experimentation and growth analytics.
 - Next.js App Router + TypeScript
 - Tailwind CSS
 - MDX content in `content/posts`
-- Static export for Nginx deployment (`output: 'export'`)
+- Server-rendered Next.js behind Nginx on a DigitalOcean droplet
 
 ## Commands
 - `npm install`
 - `npm run validate:content`
+- `npm run lint`
 - `npm run build`
-- `npm run build:git-deploy`
+- `npm run start`
 
-`npm run build` generates Atom feed first, then creates static output in `out/`.
-`npm run build:git-deploy` builds and syncs `out/` into the project web-root files (`index.html`, `_next/`, route folders) so deployment can be done via Git pull only.
+Use Node 22 for local tooling:
+
+```bash
+nvm use 22
+```
+
+`npm run build` generates the Atom feed first, then builds the Next.js app for server deployment.
 
 ## Environment Variables
-- `NEXT_PUBLIC_WAITLIST_FORM_ACTION`
-- `NEXT_PUBLIC_NEWSLETTER_FORM_ACTION`
+- `RESEND_API_KEY`
+- `LEAD_EMAIL_TO`
+- `RESEND_FROM`
+- `NEXT_PUBLIC_CALENDAR_URL`
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+- `NEXT_PUBLIC_CLARITY_PROJECT_ID`
 
-Set these to your external form endpoints (e.g., Formspree) to activate waitlist and newsletter forms.
+Contact, newsletter, waitlist, and tool result forms submit to internal Next.js route handlers and send lead emails through Resend.
 
-## Deploy (DigitalOcean + Nginx, Git Pull Only)
-1. Build and sync static web-root files locally: `npm run build:git-deploy`
-2. Commit and push the generated static files.
-3. On droplet, run only:
-   - `cd /var/www/html`
-   - `git pull`
-4. Keep existing host-level canonical redirects in Nginx (`http -> https`, non-www -> `www`).
+## Deploy (DigitalOcean + Nginx)
+1. Pull the branch on the droplet.
+2. Run `nvm use 22`.
+3. Run `npm ci`.
+4. Run `npm run build`.
+5. Start or reload the Next.js process with `npm run start` under a process manager such as PM2 or systemd.
+6. Configure Nginx to proxy the site host to the local Next.js port.

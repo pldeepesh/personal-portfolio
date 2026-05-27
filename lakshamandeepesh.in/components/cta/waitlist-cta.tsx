@@ -13,11 +13,6 @@ export function WaitlistCTA() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
-    if (siteConfig.waitlistFormAction.includes('your-form-id')) {
-      setStatus('error');
-      return;
-    }
-
     try {
       const response = await fetch(siteConfig.waitlistFormAction, {
         method: 'POST',
@@ -32,7 +27,7 @@ export function WaitlistCTA() {
       setStatus('success');
       event.currentTarget.reset();
       trackEvent('waitlist_signup_submitted', { location: 'waitlist_cta' });
-    } catch (_error) {
+    } catch {
       setStatus('error');
     }
   }
@@ -67,6 +62,7 @@ export function WaitlistCTA() {
           placeholder="What experiment or analytics problem should this product solve first?"
           required
         />
+        <input aria-hidden="true" className="hidden" name="company_website" tabIndex={-1} type="text" />
         <button
           className="btn-primary sm:col-span-2"
           data-analytics-event="product_waitlist_clicked"
@@ -79,7 +75,7 @@ export function WaitlistCTA() {
       {status === 'success' && <p className="mt-3 text-sm text-emerald-700">You are on the waitlist.</p>}
       {status === 'error' && (
         <p className="mt-3 text-sm text-red-700">
-          Could not submit. Configure `NEXT_PUBLIC_WAITLIST_FORM_ACTION` to activate this form.
+          Could not submit right now. Please try again later.
         </p>
       )}
     </section>

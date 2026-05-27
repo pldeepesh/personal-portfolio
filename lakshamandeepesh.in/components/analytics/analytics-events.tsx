@@ -9,7 +9,7 @@ function parseParams(value: string | undefined): AnalyticsParams | undefined {
 
   try {
     return JSON.parse(value) as AnalyticsParams;
-  } catch (_error) {
+  } catch {
     return undefined;
   }
 }

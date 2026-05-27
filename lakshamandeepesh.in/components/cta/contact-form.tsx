@@ -25,12 +25,6 @@ export function ContactForm() {
 
     if (Object.keys(nextErrors).length > 0) return;
 
-    if (siteConfig.contactFormAction.includes('your-form-id')) {
-      setErrors({ form: 'Configure NEXT_PUBLIC_CONTACT_FORM_ACTION to activate this form.' });
-      setStatus('error');
-      return;
-    }
-
     try {
       const response = await fetch(siteConfig.contactFormAction, {
         method: 'POST',
@@ -45,7 +39,7 @@ export function ContactForm() {
       trackEvent('contact_form_submitted', { location: 'contact_page' });
       setStatus('success');
       form.reset();
-    } catch (_error) {
+    } catch {
       setErrors({ form: 'Could not submit right now. Please email me directly or try again later.' });
       setStatus('error');
     }

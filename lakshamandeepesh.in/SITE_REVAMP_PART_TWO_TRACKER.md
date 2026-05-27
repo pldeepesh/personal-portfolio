@@ -20,10 +20,10 @@ The site must:
 - 3D approach: Hybrid phased
   - Phase 1: premium React Three Fiber scene using primitives, shaders, panels, nodes, and scroll camera movement.
   - Later: optional custom GLB assets once performance and structure are stable.
-- Deployment architecture: Needs decision during Phase 1 / Phase 7
-  - Static export is fine for the cinematic 3D frontend.
-  - Static export cannot run Next.js POST route handlers for Resend-backed forms.
-  - Before full lead capture ships, decide between serverless Next.js deployment or external form endpoints.
+- Deployment architecture: Server-rendered Next.js on the DigitalOcean droplet
+  - `output: 'export'` has been removed.
+  - Nginx should proxy the public host to a long-running `next start` process.
+  - Contact, newsletter, waitlist, and tool result capture use Next.js POST route handlers with Resend.
 - Lead-generation setup: Full forms now
   - Contact, newsletter, waitlist, and tool result capture should use validated forms.
 - Free-tool rollout: Funnel Drop Diagnostic Tool first.
@@ -35,7 +35,7 @@ The site must:
 | Phase | Name | Status |
 | --- | --- | --- |
 | 0 | Tracker + Baseline Audit | Complete |
-| 1 | Foundation, Dependencies, and Design System | In progress: foundation, design system, layout complete; form handlers pending static-export decision |
+| 1 | Foundation, Dependencies, and Design System | Complete; serverful form handlers implemented |
 | 2 | 3D and Motion Infrastructure | Complete for V1 primitives; custom GLB phase deferred |
 | 3 | Homepage Rebuild | Complete |
 | 4 | Content Model and Page Templates | Complete |
@@ -292,7 +292,7 @@ Compatibility note: React Three Fiber and Drei installed versions support React 
 - [x] Add and document `NEXT_PUBLIC_CALENDAR_URL`.
 - [x] Keep and environment-enable `GA` measurement configuration.
 - [x] Do not add `NEXT_PUBLIC_CLARITY_ID`; Microsoft Clarity is not currently used.
-- [ ] Decide deployment architecture for server-side form handling.
+- [x] Decide deployment architecture for server-side form handling.
 
 ### Design System
 
@@ -331,20 +331,20 @@ Compatibility note: React Three Fiber and Drei installed versions support React 
 
 ### Forms
 
-Phase 1 form-handler note: server-side Resend handlers are blocked by the current `output: 'export'` deployment mode, because static export cannot serve POST route handlers. Keep the checklist open until the deployment target is confirmed as serverful/serverless, or until an external form endpoint is selected.
+Phase 1 form-handler note: the architecture decision is to run Next.js server-side on the DigitalOcean droplet instead of exporting a static site. `output: 'export'` has been removed so POST route handlers can run.
 
-- [ ] Decide whether to remove `output: 'export'` and deploy through a Next.js server/serverless target.
-- [ ] If static export stays, choose external form endpoints for contact, newsletter, waitlist, and tool result capture.
-- [ ] Create shared server-side validation with Zod.
-- [ ] Create contact form handler.
-- [ ] Create newsletter signup handler.
-- [ ] Create product waitlist handler.
-- [ ] Create tool result lead capture handler.
-- [ ] Add Resend email delivery.
-- [ ] Add honeypot spam field.
-- [ ] Add clear success states.
-- [ ] Add clear validation errors.
-- [ ] Avoid logging private user-submitted form details.
+- [x] Decide whether to remove `output: 'export'` and deploy through a Next.js server/serverless target.
+- [x] External form endpoints are no longer needed because static export was removed.
+- [x] Create shared server-side validation with Zod.
+- [x] Create contact form handler.
+- [x] Create newsletter signup handler.
+- [x] Create product waitlist handler.
+- [x] Create tool result lead capture handler.
+- [x] Add Resend email delivery.
+- [x] Add honeypot spam field.
+- [x] Add clear success states.
+- [x] Add clear validation errors.
+- [x] Avoid logging private user-submitted form details.
 
 ### Phase 1 Verification
 
@@ -353,6 +353,14 @@ Phase 1 form-handler note: server-side Resend handlers are blocked by the curren
 - Desktop verification: dark hero background active, no `.bg-white` legacy surfaces on the homepage, no horizontal overflow, and no new console errors.
 - Mobile verification: mobile menu opens, `aria-expanded` updates to `true`, and no horizontal overflow.
 - `/tools/` verification: route loads with the new tools index page and is included in sitemap generation.
+- Serverful form update: `output: 'export'` removed, internal `/api/contact`, `/api/newsletter`, `/api/waitlist`, and `/api/tools/funnel-drop-diagnostic/result` handlers added.
+- `nvm use 22` validation: `npm run validate:content`, `npm run lint`, and `npm run build` passed after replacing the removed `next lint` command with ESLint 9 flat config.
+- Playwright CLI verified server-rendered `/`, `/contact/`, `/newsletter/`, and `/tools/funnel-drop-diagnostic/` at `http://127.0.0.1:3000/`.
+- Playwright CLI verified form route behavior. With local Resend env vars absent, API routes return `503` and UI error feedback renders; production success requires `RESEND_API_KEY` and `LEAD_EMAIL_TO`.
+- Droplet read-only SSH inspection succeeded after SSH config was fixed.
+- Current main nginx vhost still serves `/var/www/html/lakshamandeepesh.in` as static files with `try_files $uri $uri/ =404`.
+- No Node.js, npm, PM2, or existing site-specific systemd service was found on the droplet PATH during read-only inspection.
+- The main TLS certificate currently lists only `lakshmanadeepesh.in`; nginx also has `www.lakshmanadeepesh.in` in `server_name`, so canonical host/certificate handling should be fixed during deployment.
 
 ## Phase 2: 3D and Motion Infrastructure
 
@@ -663,7 +671,7 @@ Phase 1 form-handler note: server-side Resend handlers are blocked by the curren
 ### Phase 6 Verification
 
 - `npm run validate:content` passed for 10 posts.
-- `npm run build` passed and generated 49 static routes.
+- `npm run build` passed and generated static content plus server-rendered API routes.
 - Static export now includes `/tools/[slug]/` for the live Funnel Drop Diagnostic and all coming-soon tools.
 - Playwright CLI verified `/tools/`, `/tools/funnel-drop-diagnostic/`, and `/tools/cac-roas-calculator/` on desktop and mobile.
 - Funnel tool QA: example inputs calculate successfully, output renders volume loss, conversion loss, drop location, diagnostic questions, recommended actions, copy result, email result, strategy call CTA, and newsletter CTA.
@@ -740,7 +748,7 @@ Phase 1 form-handler note: server-side Resend handlers are blocked by the curren
 
 - [x] Preserve blog URLs.
 - [x] Preserve topic URLs where possible.
-- [ ] Add redirects for changed URLs. Static export cannot serve server redirects; legacy archive routes remain as noindex bridge pages.
+- [x] Add redirects for changed URLs. No application slug redirects are currently required; host-level canonical redirects should remain in Nginx.
 - [x] Confirm no high-value content is deleted.
 - [x] Validate sitemap output.
 - [x] Validate RSS output.
@@ -786,7 +794,7 @@ Phase 1 form-handler note: server-side Resend handlers are blocked by the curren
 - [x] No horizontal scroll.
 - [x] No text overlap.
 - [x] Tool calculations stable.
-- [ ] Forms submit successfully. Feedback paths work; true success requires configured external form endpoints.
+- [ ] Forms submit successfully. Server routes are implemented; true success requires `RESEND_API_KEY` and `LEAD_EMAIL_TO` on the droplet.
 - [x] Analytics events fire.
 
 ## Public Interfaces and Data Changes
@@ -823,7 +831,7 @@ Phase 1 form-handler note: server-side Resend handlers are blocked by the curren
 
 - [x] Run content validation.
 - [x] Run TypeScript/build validation.
-- [ ] Run lint if available and compatible. Current script uses removed `next lint` command under Next 16.
+- [x] Run lint if available and compatible. ESLint 9 flat config now replaces the removed `next lint` command.
 - [x] Run confidentiality text search.
 - [x] Run manual QA for all routes.
 - [x] Capture browser screenshots for homepage, work, blog article, tools, products, contact, and mobile homepage.
@@ -833,7 +841,7 @@ Phase 1 form-handler note: server-side Resend handlers are blocked by the curren
 - [x] Run Lighthouse on contact page.
 - [x] Test reduced-motion mode.
 - [x] Test WebGL fallback.
-- [ ] Test form success paths. Requires configured external form endpoints.
+- [ ] Test form success paths. Requires configured Resend environment variables on the droplet.
 - [x] Test form error paths.
 - [x] Test Funnel Drop Diagnostic with normal values.
 - [x] Test Funnel Drop Diagnostic with zero values.
@@ -852,21 +860,22 @@ Phase 1 form-handler note: server-side Resend handlers are blocked by the curren
 - [x] Case studies are anonymized and credible.
 - [x] `/tools` exists.
 - [x] Funnel Drop Diagnostic Tool is live.
-- [ ] Contact form works. Requires configured external form endpoint for success.
-- [ ] Newsletter form works. Requires configured external form endpoint for success.
-- [ ] Waitlist form works. Requires configured external form endpoint for success.
+- [ ] Contact form works. Server route is implemented; production success requires configured Resend env vars.
+- [ ] Newsletter form works. Server route is implemented; production success requires configured Resend env vars.
+- [ ] Waitlist form works. Server route is implemented; production success requires configured Resend env vars.
 - [x] Tool lead capture works.
 - [x] Analytics events are implemented.
 - [x] No forbidden employer/client names appear publicly.
 - [x] Site is responsive.
 - [x] Site is accessible.
-- [ ] Site is production-ready. Remaining launch caveats: external form endpoints, static-export redirects, and Lighthouse mobile performance on homepage/tool page.
+- [ ] Site is production-ready. Remaining launch caveats: install/configure Node runtime on the droplet, switch nginx from static `try_files` to a Next.js proxy, configure Resend env vars, fix canonical host/certificate handling, Safari/Firefox QA, and Lighthouse mobile performance on homepage/tool page.
 
 ### Phase 8 Verification
 
 - `npm run validate:content` passed for 10 posts.
 - `npm run build` passed and generated 49 static routes.
-- `npm run lint` did not run because the script still calls `next lint`, which is no longer available in Next 16.
+- `nvm use 22 && npm run lint` passed after replacing `next lint` with ESLint 9 flat config.
+- `nvm use 22 && npm run build` passed with server-rendered API routes for contact, newsletter, waitlist, and Funnel Drop Diagnostic result capture.
 - Lighthouse scores:
   - Homepage: Performance 83, Accessibility 100, Best Practices 100, SEO 100.
   - Blog article: Performance 86, Accessibility 96, Best Practices 100, SEO 100.

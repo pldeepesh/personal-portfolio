@@ -13,11 +13,6 @@ export function NewsletterForm() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
-    if (siteConfig.newsletterFormAction.includes('your-form-id')) {
-      setStatus('error');
-      return;
-    }
-
     try {
       const response = await fetch(siteConfig.newsletterFormAction, {
         method: 'POST',
@@ -32,7 +27,7 @@ export function NewsletterForm() {
       setStatus('success');
       event.currentTarget.reset();
       trackEvent('newsletter_signup_submitted', { location: 'newsletter_form' });
-    } catch (_error) {
+    } catch {
       setStatus('error');
     }
   }
@@ -50,6 +45,8 @@ export function NewsletterForm() {
           required
           type="email"
         />
+        <input name="source" type="hidden" value="newsletter_form" />
+        <input aria-hidden="true" className="hidden" name="company_website" tabIndex={-1} type="text" />
         <button className="btn-primary" type="submit">
           Subscribe
         </button>
@@ -57,7 +54,7 @@ export function NewsletterForm() {
       {status === 'success' && <p className="mt-3 text-sm text-emerald-700">Subscribed. Check your inbox for confirmation.</p>}
       {status === 'error' && (
         <p className="mt-3 text-sm text-red-700">
-          Unable to submit right now. Configure `NEXT_PUBLIC_NEWSLETTER_FORM_ACTION` to activate this form.
+          Unable to submit right now. Please try again later.
         </p>
       )}
     </section>

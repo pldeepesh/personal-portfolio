@@ -16,6 +16,8 @@ function DecisionEngineCore() {
     const elapsed = clock.elapsedTime;
     const scrollProgress = Math.min(window.scrollY / Math.max(window.innerHeight, 1), 1);
 
+    // R3F expects camera mutation inside the render loop for scroll-linked movement.
+    // eslint-disable-next-line react-hooks/immutability
     camera.position.x = scrollProgress * 0.55;
     camera.position.y = 0.85 + scrollProgress * 0.3;
     camera.lookAt(0, 0.1, 0);
