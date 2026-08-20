@@ -1,6 +1,17 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 
 import { Section } from '@/components/primitives/section';
+
+export const metadata: Metadata = {
+  title: 'Page not found | Lakshmana Deepesh',
+  description: 'The requested page could not be found.',
+  alternates: {},
+  robots: {
+    index: false,
+    follow: false
+  }
+};
 
 export default function NotFoundPage() {
   return (

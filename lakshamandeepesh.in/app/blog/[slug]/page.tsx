@@ -73,9 +73,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         data={[
           ...createBaseSchema(),
           createBreadcrumbSchema([
-            { name: 'Home', item: 'https://www.lakshmanadeepesh.in/' },
-            { name: 'Blog', item: 'https://www.lakshmanadeepesh.in/blog/' },
-            { name: post.title, item: `https://www.lakshmanadeepesh.in/blog/${post.slug}/` }
+            { name: 'Home', item: absoluteUrl('/') },
+            { name: 'Blog', item: absoluteUrl('/blog/') },
+            { name: post.title, item: absoluteUrl(`/blog/${post.slug}/`) }
           ]),
           createArticleSchema({
             title: post.title,

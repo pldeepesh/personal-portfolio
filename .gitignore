@@ -14,8 +14,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
+/lib/
+/lib64/
 parts/
 sdist/
 var/
@@ -104,7 +104,7 @@ venv.bak/
 .mypy_cache/
 
 # html
-google7edc98a4d1222d1a.html
+/google7edc98a4d1222d1a.html
 
 # Node / frontend build artifacts
 **/node_modules/
@@ -112,5 +112,6 @@ google7edc98a4d1222d1a.html
 **/out/
 **/.playwright-cli/
 lakshamandeepesh.in/output/
+lakshamandeepesh.in/site-revamp-part-two-3d.md
 .vscode/
 .DS_Store

@@ -10,8 +10,9 @@ import { trackEvent } from '@/lib/analytics';
 
 type DiagnosticResult = {
   headline: string;
-  volumeLoss: number;
-  conversionLoss: number;
+  volumeImpact: number;
+  conversionImpact: number;
+  valueImpact: number;
   totalRevenueChange: number;
   stageFinding: string;
   questions: string[];
@@ -51,6 +52,16 @@ function currency(value: number) {
   }).format(Math.max(0, Math.round(value)));
 }
 
+function currencyImpact(value: number) {
+  if (Math.abs(value) < 0.5) return currency(0);
+  return `${value > 0 ? '+' : '-'}${currency(Math.abs(value))}`;
+}
+
+function movement(value: number, unit = '%') {
+  if (Math.abs(value) < 0.05) return `unchanged at 0.0${unit}`;
+  return `${value > 0 ? 'up' : 'down'} ${Math.abs(value).toFixed(1)}${unit}`;
+}
+
 function numberFrom(value: string) {
   const parsed = Number(value.replace(/,/g, ''));
   return Number.isFinite(parsed) ? parsed : 0;
@@ -78,19 +89,26 @@ function diagnose(state: FormState): DiagnosticResult {
   const previousRevenue = numberFrom(state.previousRevenue);
   const currentRevenue = numberFrom(state.currentRevenue);
 
-  const previousCustomers = Math.max(1, previousLeads * (previousConversionRate / 100));
-  const valuePerCustomer = previousRevenue / previousCustomers;
-  const volumeLostLeads = Math.max(0, previousLeads - currentLeads);
-  const volumeLoss = volumeLostLeads * (previousConversionRate / 100) * valuePerCustomer;
-  const expectedCustomersAtPreviousRate = currentLeads * (previousConversionRate / 100);
+  const previousCustomers = previousLeads * (previousConversionRate / 100);
   const currentCustomers = currentLeads * (currentConversionRate / 100);
-  const conversionLoss = Math.max(0, expectedCustomersAtPreviousRate - currentCustomers) * valuePerCustomer;
+  const previousValuePerCustomer = previousCustomers > 0 ? previousRevenue / previousCustomers : 0;
+  const currentValuePerCustomer = currentCustomers > 0 ? currentRevenue / currentCustomers : 0;
+  const volumeImpact = (currentLeads - previousLeads) * (previousConversionRate / 100) * previousValuePerCustomer;
+  const expectedCustomersAtPreviousRate = currentLeads * (previousConversionRate / 100);
+  const conversionImpact = (currentCustomers - expectedCustomersAtPreviousRate) * previousValuePerCustomer;
+  const valueImpact = (currentValuePerCustomer - previousValuePerCustomer) * currentCustomers;
   const totalRevenueChange = currentRevenue - previousRevenue;
 
   const stages = parseStages(state.stages);
   let stageFinding = 'No valid stage-level rows were provided, so the result uses lead volume, conversion rate, and revenue movement.';
 
-  if (stages.length >= 2) {
+  const stageTotalsMatch =
+    stages.length === 0 ||
+    (Math.abs(stages[0].previous - previousLeads) < 0.5 && Math.abs(stages[0].current - currentLeads) < 0.5);
+
+  if (!stageTotalsMatch) {
+    stageFinding = 'The first stage row does not match the lead totals above. Align those values before trusting the stage-level diagnosis.';
+  } else if (stages.length >= 2) {
     const transitions = stages.slice(1).map((stage, index) => {
       const previousParent = stages[index].previous;
       const currentParent = stages[index].current;
@@ -111,20 +129,30 @@ function diagnose(state: FormState): DiagnosticResult {
 
   const volumeDropPercent = previousLeads > 0 ? ((previousLeads - currentLeads) / previousLeads) * 100 : 0;
   const conversionDropPoints = previousConversionRate - currentConversionRate;
+  const pressures = [
+    { label: 'lead volume loss', value: Math.max(0, -volumeImpact) },
+    { label: 'conversion-rate loss', value: Math.max(0, -conversionImpact) },
+    { label: 'customer-value loss', value: Math.max(0, -valueImpact) }
+  ].sort((a, b) => b.value - a.value);
   const headline =
-    volumeLoss > conversionLoss
-      ? 'Primary pressure appears to be lead volume loss.'
-      : conversionLoss > volumeLoss
-        ? 'Primary pressure appears to be conversion-rate loss.'
-        : 'Volume and conversion pressure look similar.';
+    totalRevenueChange > 0
+      ? 'Revenue improved in the current period.'
+      : pressures[0].value > 0
+        ? `Primary pressure appears to be ${pressures[0].label}.`
+        : 'No material volume, conversion, or customer-value pressure is visible.';
 
   const segmentPrefix = state.segment.trim() ? `For ${state.segment.trim()}, ` : '';
-  const summary = `${segmentPrefix}leads moved from ${previousLeads.toLocaleString()} to ${currentLeads.toLocaleString()} (${volumeDropPercent.toFixed(1)}%), conversion moved from ${previousConversionRate.toFixed(1)}% to ${currentConversionRate.toFixed(1)}% (${conversionDropPoints.toFixed(1)} pts), and revenue changed by ${currency(Math.abs(totalRevenueChange))}.`;
+  const revenueMovement =
+    totalRevenueChange === 0
+      ? 'revenue was unchanged'
+      : `revenue ${totalRevenueChange > 0 ? 'increased' : 'decreased'} by ${currency(Math.abs(totalRevenueChange))}`;
+  const summary = `${segmentPrefix}leads moved from ${previousLeads.toLocaleString()} to ${currentLeads.toLocaleString()} (${movement(-volumeDropPercent)}), conversion moved from ${previousConversionRate.toFixed(1)}% to ${currentConversionRate.toFixed(1)}% (${movement(-conversionDropPoints, ' pts')}), and ${revenueMovement}.`;
 
   return {
     headline,
-    volumeLoss,
-    conversionLoss,
+    volumeImpact,
+    conversionImpact,
+    valueImpact,
     totalRevenueChange,
     stageFinding,
     summary,
@@ -156,7 +184,9 @@ export function FunnelDropDiagnostic() {
       numberFrom(state.previousLeads) > 0 &&
       numberFrom(state.currentLeads) >= 0 &&
       numberFrom(state.previousConversionRate) > 0 &&
+      numberFrom(state.previousConversionRate) <= 100 &&
       numberFrom(state.currentConversionRate) >= 0 &&
+      numberFrom(state.currentConversionRate) <= 100 &&
       numberFrom(state.previousRevenue) > 0 &&
       numberFrom(state.currentRevenue) >= 0,
     [state]
@@ -361,15 +391,19 @@ export function FunnelDropDiagnostic() {
               <p className="mt-2 text-sm leading-7 text-muted">{result.summary}</p>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="grid gap-3 sm:grid-cols-3">
               <div className="rounded-lg border border-border bg-background p-4">
-                <p className="text-xs uppercase tracking-wide text-muted">Volume loss estimate</p>
-                <p className="mt-2 font-heading text-2xl text-ink">{currency(result.volumeLoss)}</p>
+                  <p className="text-xs uppercase tracking-wide text-muted">Volume impact</p>
+                  <p className="mt-2 font-heading text-2xl text-ink">{currencyImpact(result.volumeImpact)}</p>
               </div>
-              <div className="rounded-lg border border-border bg-background p-4">
-                <p className="text-xs uppercase tracking-wide text-muted">Conversion loss estimate</p>
-                <p className="mt-2 font-heading text-2xl text-ink">{currency(result.conversionLoss)}</p>
-              </div>
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <p className="text-xs uppercase tracking-wide text-muted">Conversion impact</p>
+                  <p className="mt-2 font-heading text-2xl text-ink">{currencyImpact(result.conversionImpact)}</p>
+                </div>
+                <div className="rounded-lg border border-border bg-background p-4">
+                  <p className="text-xs uppercase tracking-wide text-muted">Customer-value impact</p>
+                  <p className="mt-2 font-heading text-2xl text-ink">{currencyImpact(result.valueImpact)}</p>
+                </div>
             </div>
 
             <div className="rounded-lg border border-accent/30 bg-accent-soft p-4">
@@ -409,7 +443,7 @@ export function FunnelDropDiagnostic() {
                 Email result
               </Button>
             </div>
-            {emailStatus === 'success' ? <p className="text-sm font-semibold text-success">Result sent. I will follow up if useful.</p> : null}
+            {emailStatus === 'success' ? <p className="text-sm font-semibold text-success">Result emailed to {state.email.trim()}.</p> : null}
           </div>
         ) : (
           <div className="mt-4 rounded-lg border border-dashed border-border p-5">

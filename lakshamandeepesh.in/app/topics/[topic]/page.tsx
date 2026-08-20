@@ -7,7 +7,7 @@ import { Section } from '@/components/primitives/section';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
 import { JsonLd } from '@/components/seo/json-ld';
 import { getAllTopics, getPostBySlug, getPostsByTopic, getTopicBySlug } from '@/lib/content';
-import { createBaseSchema, createBreadcrumbSchema, createCollectionSchema, createMetadata } from '@/lib/seo';
+import { absoluteUrl, createBaseSchema, createBreadcrumbSchema, createCollectionSchema, createMetadata } from '@/lib/seo';
 
 type TopicPageProps = {
   params: Promise<{ topic: string }>;
@@ -59,9 +59,9 @@ export default async function TopicPage({ params }: TopicPageProps) {
           data={[
             ...createBaseSchema(),
             createBreadcrumbSchema([
-              { name: 'Home', item: 'https://www.lakshmanadeepesh.in/' },
-              { name: 'Topics', item: 'https://www.lakshmanadeepesh.in/topics/' },
-              { name: topic.title, item: `https://www.lakshmanadeepesh.in/topics/${topic.slug}/` }
+              { name: 'Home', item: absoluteUrl('/') },
+              { name: 'Topics', item: absoluteUrl('/topics/') },
+              { name: topic.title, item: absoluteUrl(`/topics/${topic.slug}/`) }
             ]),
             createCollectionSchema({
               title: topic.title,

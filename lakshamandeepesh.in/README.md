@@ -6,7 +6,7 @@ Editorial-first website focused on experimentation and growth analytics.
 - Next.js App Router + TypeScript
 - Tailwind CSS
 - MDX content in `content/posts`
-- Server-rendered Next.js behind Nginx on a DigitalOcean droplet
+- Server-rendered Next.js on a Raspberry Pi, published through a Cloudflare Tunnel
 
 ## Commands
 - `npm install`
@@ -33,10 +33,13 @@ nvm use 22
 
 Contact, newsletter, waitlist, and tool result forms submit to internal Next.js route handlers and send lead emails through Resend.
 
-## Deploy (DigitalOcean + Nginx)
-1. Pull the branch on the droplet.
-2. Run `nvm use 22`.
-3. Run `npm ci`.
-4. Run `npm run build`.
-5. Start or reload the Next.js process with `npm run start` under a process manager such as PM2 or systemd.
-6. Configure Nginx to proxy the site host to the local Next.js port.
+## Deploy (Raspberry Pi + Cloudflare Tunnel)
+
+Production runs as `lakshamandeepesh-portfolio.service` on `127.0.0.1:3100`. The Cloudflare Tunnel service publishes the apex and `www` hostnames. Releases live under `/mnt/usbdrive/services/lakshamandeepesh.in/releases`, and `current` is an atomic symlink to the active release.
+
+1. Commit the release on a non-default branch.
+2. Run `npm run verify` locally.
+3. Run `npm run deploy:pi` from a clean worktree, or execute `scripts/deploy-raspberrypi.sh` directly.
+4. The deploy script uploads only runtime source/configuration, installs dependencies and builds on the Pi, switches the `current` symlink, restarts systemd, and rolls back if the local health check fails.
+
+Production secrets remain in `/mnt/usbdrive/services/lakshamandeepesh.in/shared/.env.production` and are never copied into a release.

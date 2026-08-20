@@ -28,11 +28,21 @@ export async function generateMetadata({ params }: ToolPageProps) {
 
   if (!tool) return {};
 
-  return createMetadata({
+  const metadata = createMetadata({
     title: `${tool.seoTitle} | Lakshmana Deepesh`,
     description: tool.seoDescription,
     path: `/tools/${tool.slug}/`
   });
+
+  return tool.status === 'live'
+    ? metadata
+    : {
+        ...metadata,
+        robots: {
+          index: false,
+          follow: true
+        }
+      };
 }
 
 function createToolSchema(tool: NonNullable<ReturnType<typeof getToolBySlug>>) {
@@ -72,11 +82,11 @@ export default async function ToolDetailPage({ params }: ToolPageProps) {
         data={[
           ...createBaseSchema(),
           createBreadcrumbSchema([
-            { name: 'Home', item: 'https://www.lakshmanadeepesh.in/' },
-            { name: 'Tools', item: 'https://www.lakshmanadeepesh.in/tools/' },
-            { name: tool.title, item: `https://www.lakshmanadeepesh.in/tools/${tool.slug}/` }
+            { name: 'Home', item: absoluteUrl('/') },
+            { name: 'Tools', item: absoluteUrl('/tools/') },
+            { name: tool.title, item: absoluteUrl(`/tools/${tool.slug}/`) }
           ]),
-          createToolSchema(tool)
+          ...(tool.status === 'live' ? [createToolSchema(tool)] : [])
         ]}
       />
 

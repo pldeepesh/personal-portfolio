@@ -51,7 +51,7 @@ export function NewsletterForm() {
           Subscribe
         </button>
       </form>
-      {status === 'success' && <p className="mt-3 text-sm text-emerald-700">Subscribed. Check your inbox for confirmation.</p>}
+      {status === 'success' && <p className="mt-3 text-sm text-emerald-700">Signup received. You will get the next issue when it is published.</p>}
       {status === 'error' && (
         <p className="mt-3 text-sm text-red-700">
           Unable to submit right now. Please try again later.

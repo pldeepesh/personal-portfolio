@@ -4,7 +4,7 @@ import { Section } from '@/components/primitives/section';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
 import { JsonLd } from '@/components/seo/json-ld';
 import { getAllPosts } from '@/lib/content';
-import { createBaseSchema, createBreadcrumbSchema, createCollectionSchema, createMetadata } from '@/lib/seo';
+import { absoluteUrl, createBaseSchema, createBreadcrumbSchema, createCollectionSchema, createMetadata } from '@/lib/seo';
 
 export const metadata = createMetadata({
   title: 'Blog | Lakshmana Deepesh',
@@ -23,8 +23,8 @@ export default function BlogIndexPage() {
         data={[
           ...createBaseSchema(),
           createBreadcrumbSchema([
-            { name: 'Home', item: 'https://www.lakshmanadeepesh.in/' },
-            { name: 'Blog', item: 'https://www.lakshmanadeepesh.in/blog/' }
+            { name: 'Home', item: absoluteUrl('/') },
+            { name: 'Blog', item: absoluteUrl('/blog/') }
           ]),
           createCollectionSchema({
             title: 'Blog',

@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
 
-const siteUrl = 'https://www.lakshmanadeepesh.in';
+const siteUrl = 'https://lakshmanadeepesh.in';
 const postsDir = path.join(process.cwd(), 'content/posts');
 const publicDir = path.join(process.cwd(), 'public');
 const outputPath = path.join(publicDir, 'feed.xml');
@@ -27,9 +27,12 @@ const entries = fs
   })
   .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
 
-const updated = new Date().toISOString();
+const updated = entries.reduce(
+  (latest, entry) => (entry.updatedAt > latest ? entry.updatedAt : latest),
+  entries[0]?.updatedAt ?? new Date(0).toISOString().slice(0, 10)
+);
 
-const feed = `<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">\n  <title>Lakshmana Deepesh Blog</title>\n  <link href="${siteUrl}/feed.xml" rel="self"/>\n  <link href="${siteUrl}/blog/"/>\n  <updated>${updated}</updated>\n  <id>${siteUrl}/blog/</id>\n${entries
+const feed = `<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">\n  <title>Lakshmana Deepesh Blog</title>\n  <link href="${siteUrl}/feed.xml" rel="self"/>\n  <link href="${siteUrl}/blog/"/>\n  <updated>${updated}T00:00:00Z</updated>\n  <id>${siteUrl}/blog/</id>\n${entries
   .map(
     (entry) =>
       `  <entry>\n    <title>${escapeXml(entry.title)}</title>\n    <link href="${siteUrl}/blog/${entry.slug}/"/>\n    <id>${siteUrl}/blog/${entry.slug}/</id>\n    <summary>${escapeXml(entry.excerpt)}</summary>\n    <published>${entry.publishedAt}T00:00:00Z</published>\n    <updated>${entry.updatedAt}T00:00:00Z</updated>\n  </entry>`

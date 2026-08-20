@@ -21,6 +21,7 @@ export async function POST(request: Request) {
     await sendLeadEmail({
       subject: `New product waitlist signup from ${payload.name}`,
       preview: 'A new product waitlist submission was received from lakshmanadeepesh.in.',
+      replyTo: payload.email,
       lines: [
         ['Name', payload.name],
         ['Email', payload.email],

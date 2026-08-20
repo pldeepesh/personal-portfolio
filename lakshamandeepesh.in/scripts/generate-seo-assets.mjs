@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 const siteRoot = path.resolve(process.cwd());
-const baseUrl = "https://www.lakshmanadeepesh.in";
+const baseUrl = "https://lakshmanadeepesh.in";
 const today = new Date().toISOString();
 
 function walk(dir) {
