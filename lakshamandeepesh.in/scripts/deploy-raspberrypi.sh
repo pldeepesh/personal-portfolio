@@ -56,6 +56,10 @@ for _ in {1..30}; do
   sleep 2
 done
 
+if [[ "$HEALTHY" == "true" ]] && ! ssh "$SSH_HOST" "cd '$RELEASE_PATH' && node scripts/smoke-site.mjs http://127.0.0.1:3100 https://lakshmanadeepesh.in"; then
+  HEALTHY=false
+fi
+
 if [[ "$HEALTHY" != "true" ]]; then
   echo "Health check failed. Restoring the previous release."
   if [[ -n "$PREVIOUS_RELEASE" ]]; then

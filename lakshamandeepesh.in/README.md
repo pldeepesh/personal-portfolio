@@ -14,6 +14,7 @@ Editorial-first website focused on experimentation and growth analytics.
 - `npm run lint`
 - `npm run build`
 - `npm run start`
+- `npm run smoke -- https://lakshmanadeepesh.in`
 
 Use Node 22 for local tooling:
 
@@ -40,6 +41,7 @@ Production runs as `lakshamandeepesh-portfolio.service` on `127.0.0.1:3100`. The
 1. Commit the release on a non-default branch.
 2. Run `npm run verify` locally.
 3. Run `npm run deploy:pi` from a clean worktree, or execute `scripts/deploy-raspberrypi.sh` directly.
-4. The deploy script uploads only runtime source/configuration, installs dependencies and builds on the Pi, switches the `current` symlink, restarts systemd, and rolls back if the local health check fails.
+4. The deploy script uploads only runtime source/configuration, installs dependencies and builds on the Pi, switches the `current` symlink, restarts systemd, and runs route, canonical, indexing, sitemap, feed, and 404 smoke checks.
+5. If any health or smoke check fails, the script restores the previous release and restarts it automatically.
 
 Production secrets remain in `/mnt/usbdrive/services/lakshamandeepesh.in/shared/.env.production` and are never copied into a release.
