@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+import http from 'node:http';
+import https from 'node:https';
+
 const baseUrl = new URL(process.argv[2] ?? 'https://lakshmanadeepesh.in');
 const canonicalOrigin = (process.argv[3] ?? 'https://lakshmanadeepesh.in').replace(/\/$/, '');
 const failures = [];
@@ -37,6 +40,49 @@ async function request(pathname, expectedStatus = 200) {
   }
 
   return { body, response };
+}
+
+async function expectOriginRedirect(label, headers) {
+  const pathname = '/release-redirect-check/?source=smoke';
+  const expectedLocation = `${canonicalOrigin}/release-redirect-check?source=smoke`;
+  let result;
+
+  try {
+    const transport = baseUrl.protocol === 'https:' ? https : http;
+    result = await new Promise((resolve, reject) => {
+      const request = transport.request({
+        hostname: baseUrl.hostname,
+        port: baseUrl.port || undefined,
+        path: pathname,
+        method: 'HEAD',
+        headers: {
+          ...headers,
+          'user-agent': 'portfolio-release-smoke-check/1.0'
+        },
+        timeout: 15_000
+      }, (response) => {
+        response.resume();
+        response.on('end', () => resolve({
+          status: response.statusCode ?? 0,
+          location: response.headers.location ?? null
+        }));
+      });
+      request.on('timeout', () => request.destroy(new Error('request timed out')));
+      request.on('error', reject);
+      request.end();
+    });
+  } catch (error) {
+    fail(label, error instanceof Error ? error.message : String(error));
+    return;
+  }
+
+  if (![307, 308].includes(result.status)) {
+    fail(label, `expected redirect, received ${result.status}`);
+  }
+
+  if (result.location !== expectedLocation) {
+    fail(label, `expected location ${expectedLocation}, received ${result.location}`);
+  }
 }
 
 function expectIncludes(label, value, expected) {
@@ -83,6 +129,17 @@ expectExcludes('feed hostname', feed.body, 'https://www.lakshmanadeepesh.in');
 
 const robots = await request('/robots.txt');
 expectIncludes('robots sitemap', robots.body, `Sitemap: ${canonicalOrigin}/sitemap.xml`);
+
+if (['127.0.0.1', 'localhost'].includes(baseUrl.hostname)) {
+  await expectOriginRedirect('www canonical redirect', {
+    host: 'www.lakshmanadeepesh.in',
+    'x-forwarded-proto': 'https'
+  });
+  await expectOriginRedirect('HTTP canonical redirect', {
+    host: 'lakshmanadeepesh.in',
+    'x-forwarded-proto': 'http'
+  });
+}
 
 if (failures.length > 0) {
   console.error(`Smoke check failed for ${baseUrl.href}`);

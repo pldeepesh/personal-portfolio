@@ -2,7 +2,7 @@
 
 ## Architecture
 
-Traffic reaches `lakshmanadeepesh.in` through Cloudflare Tunnel. The tunnel forwards the apex and `www` hostnames to the Next.js service bound to `127.0.0.1:3100` on the Raspberry Pi.
+Traffic reaches `lakshmanadeepesh.in` through Cloudflare Tunnel. The tunnel forwards the apex and `www` hostnames to the Next.js service bound to `127.0.0.1:3100` on the Raspberry Pi. The Next.js origin permanently redirects HTTP and `www` requests to the canonical apex HTTPS origin while preserving the requested path and query string.
 
 The systemd unit is `lakshamandeepesh-portfolio.service`. Releases are stored under `/mnt/usbdrive/services/lakshamandeepesh.in/releases`, and the `current` symlink selects the active release. Secrets live in `shared/.env.production` outside release directories.
 
@@ -17,7 +17,7 @@ The systemd unit is `lakshamandeepesh-portfolio.service`. Releases are stored un
 7. Run `npm run smoke -- https://lakshmanadeepesh.in` against Cloudflare after deployment.
 8. Verify one controlled submission for each production form using an owner-controlled email address.
 
-The smoke suite checks homepage and blog canonicals, live-tool indexing, unfinished-tool exclusion from the sitemap, 404 indexing behavior, canonical sitemap/feed hostnames, and the robots sitemap declaration.
+The smoke suite checks homepage and blog canonicals, HTTP and `www` redirects, live-tool indexing, unfinished-tool exclusion from the sitemap, 404 indexing behavior, canonical sitemap/feed hostnames, and the robots sitemap declaration.
 
 ## Rollback
 
@@ -27,7 +27,6 @@ For a manual rollback, resolve the intended release first, point a temporary sym
 
 ## Decisions requiring owner approval
 
-- Cloudflare redirect policy and canonical-host enforcement.
 - HSTS, Content Security Policy, browser security headers, and public rate limits.
 - Newsletter subscriber storage, confirmation, and unsubscribe architecture.
 - Core design-system or conversion-flow changes.
