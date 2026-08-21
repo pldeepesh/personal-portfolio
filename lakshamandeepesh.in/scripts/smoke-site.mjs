@@ -130,6 +130,11 @@ expectExcludes('feed hostname', feed.body, 'https://www.lakshmanadeepesh.in');
 const robots = await request('/robots.txt');
 expectIncludes('robots sitemap', robots.body, `Sitemap: ${canonicalOrigin}/sitemap.xml`);
 
+const newsletterConfirmation = await request('/newsletter/confirm/');
+expectIncludes('newsletter confirmation indexability', newsletterConfirmation.body, 'content="noindex, nofollow"');
+expectExcludes('sitemap newsletter confirmation', sitemap.body, '/newsletter/confirm');
+expectExcludes('sitemap newsletter success', sitemap.body, '/newsletter/confirmed');
+
 if (['127.0.0.1', 'localhost'].includes(baseUrl.hostname)) {
   await expectOriginRedirect('www canonical redirect', {
     host: 'www.lakshmanadeepesh.in',

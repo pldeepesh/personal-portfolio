@@ -28,11 +28,12 @@ nvm use 22
 - `RESEND_API_KEY`
 - `LEAD_EMAIL_TO`
 - `RESEND_FROM`
+- `RESEND_NEWSLETTER_SEGMENT_ID`
 - `NEXT_PUBLIC_CALENDAR_URL`
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID`
 - `NEXT_PUBLIC_CLARITY_PROJECT_ID`
 
-Contact, newsletter, waitlist, and tool result forms submit to internal Next.js route handlers and send lead emails through Resend.
+Contact, waitlist, and tool result forms submit to internal Next.js route handlers and send email through Resend. Newsletter requests use encrypted, expiring confirmation tokens and add confirmed subscribers to the configured Resend Segment; Resend is the subscriber source of truth, so no local subscriber database is required.
 
 ## Deploy (Raspberry Pi + Cloudflare Tunnel)
 

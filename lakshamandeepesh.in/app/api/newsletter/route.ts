@@ -3,8 +3,10 @@ import { ZodError } from 'zod';
 
 import { formDataToObject } from '@/lib/forms/request';
 import { configurationErrorResponse, genericErrorResponse, validationErrorResponse } from '@/lib/forms/response';
-import { isLeadEmailConfigured, sendLeadEmail } from '@/lib/forms/resend';
+import { createNewsletterConfirmationToken, isNewsletterConfigured } from '@/lib/forms/newsletter';
+import { sendEmail } from '@/lib/forms/resend';
 import { newsletterFormSchema } from '@/lib/forms/validation';
+import { siteConfig } from '@/lib/site-config';
 
 export async function POST(request: Request) {
   try {
@@ -14,17 +16,26 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: true });
     }
 
-    if (!isLeadEmailConfigured()) {
+    if (!isNewsletterConfigured()) {
       return configurationErrorResponse();
     }
 
-    await sendLeadEmail({
-      subject: 'New newsletter signup',
-      preview: 'A new newsletter signup was received from lakshmanadeepesh.in.',
+    const token = createNewsletterConfirmationToken(payload.email);
+    const confirmationUrl = new URL('/newsletter/confirm/', siteConfig.siteUrl);
+    confirmationUrl.searchParams.set('token', token);
+
+    await sendEmail({
+      to: payload.email,
+      subject: 'Confirm your newsletter subscription',
+      preview: 'Confirm that you want practical notes on analytics, experimentation, AI workflows, and growth decisions.',
       lines: [
-        ['Email', payload.email],
-        ['Source', payload.source || 'newsletter_form']
-      ]
+        ['Requested for', payload.email],
+        ['Confirmation window', '24 hours']
+      ],
+      action: {
+        label: 'Confirm subscription',
+        url: confirmationUrl.toString()
+      }
     });
 
     return NextResponse.json({ ok: true });

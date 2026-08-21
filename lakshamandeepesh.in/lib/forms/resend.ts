@@ -13,13 +13,17 @@ type SendLeadEmailInput = {
 
 type SendEmailInput = SendLeadEmailInput & {
   to: string;
+  action?: {
+    label: string;
+    url: string;
+  };
 };
 
 export function isLeadEmailConfigured() {
   return Boolean(resendApiKey && leadEmailTo);
 }
 
-export async function sendEmail({ to, subject, preview, lines, replyTo }: SendEmailInput) {
+export async function sendEmail({ to, subject, preview, lines, replyTo, action }: SendEmailInput) {
   if (!resendApiKey) {
     throw new Error('Email delivery is not configured.');
   }
@@ -33,14 +37,18 @@ export async function sendEmail({ to, subject, preview, lines, replyTo }: SendEm
       return `<tr><th align="left" style="padding:8px 12px;border-bottom:1px solid #e5e7eb;vertical-align:top;">${safeLabel}</th><td style="padding:8px 12px;border-bottom:1px solid #e5e7eb;white-space:pre-wrap;">${safeValue}</td></tr>`;
     })
     .join('');
+  const textAction = action ? `\n\n${action.label}: ${action.url}` : '';
+  const htmlAction = action
+    ? `<p style="margin:24px 0;"><a href="${escapeHtml(action.url)}" style="display:inline-block;border-radius:8px;background:#111827;color:#ffffff;padding:12px 18px;text-decoration:none;font-weight:700;">${escapeHtml(action.label)}</a></p>`
+    : '';
 
   const { error } = await resend.emails.send({
     from: resendFrom,
     to,
     ...(replyTo ? { replyTo } : {}),
     subject,
-    text: [preview, '', ...lines.map(([label, value]) => `${label}: ${value}`)].join('\n'),
-    html: `<div style="font-family:Arial,sans-serif;line-height:1.5;color:#111827;"><p>${escapeHtml(preview)}</p><table cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;max-width:720px;">${htmlRows}</table></div>`
+    text: `${[preview, '', ...lines.map(([label, value]) => `${label}: ${value}`)].join('\n')}${textAction}`,
+    html: `<div style="font-family:Arial,sans-serif;line-height:1.5;color:#111827;"><p>${escapeHtml(preview)}</p><table cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;max-width:720px;">${htmlRows}</table>${htmlAction}</div>`
   });
 
   if (error) {

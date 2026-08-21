@@ -4,7 +4,7 @@
 
 Traffic reaches `lakshmanadeepesh.in` through Cloudflare Tunnel. The tunnel forwards the apex and `www` hostnames to the Next.js service bound to `127.0.0.1:3100` on the Raspberry Pi. The Next.js origin permanently redirects HTTP and `www` requests to the canonical apex HTTPS origin while preserving the requested path and query string.
 
-The systemd unit is `lakshamandeepesh-portfolio.service`. Releases are stored under `/mnt/usbdrive/services/lakshamandeepesh.in/releases`, and the `current` symlink selects the active release. Secrets live in `shared/.env.production` outside release directories.
+The systemd unit is `lakshamandeepesh-portfolio.service`. Releases are stored under `/mnt/usbdrive/services/lakshamandeepesh.in/releases`, and the `current` symlink selects the active release. Secrets live in `shared/.env.production` outside release directories. Confirmed newsletter subscribers are stored in the Resend Segment configured by `RESEND_NEWSLETTER_SEGMENT_ID`; encrypted confirmation tokens expire after 24 hours, so the site does not maintain a subscriber database.
 
 ## Release gates
 
@@ -28,7 +28,6 @@ For a manual rollback, resolve the intended release first, point a temporary sym
 ## Decisions requiring owner approval
 
 - HSTS, Content Security Policy, browser security headers, and public rate limits.
-- Newsletter subscriber storage, confirmation, and unsubscribe architecture.
 - Core design-system or conversion-flow changes.
 - Production calendar URL and any paid scheduling integration.
 
