@@ -43,7 +43,7 @@ ssh "$SSH_HOST" "mkdir -p '$RELEASE_PATH'"
   rsync --archive --compress --delete-delay "${SOURCE_ITEMS[@]}" "$SSH_HOST:$RELEASE_PATH/"
 )
 
-ssh "$SSH_HOST" "set -e; cd '$RELEASE_PATH'; npm ci; set -a; . '$SERVICE_ROOT/shared/.env.production'; set +a; npm run build"
+ssh "$SSH_HOST" "set -e; cd '$RELEASE_PATH'; npm ci; node scripts/run-with-env.mjs '$SERVICE_ROOT/shared/.env.production' npm run build"
 
 ssh "$SSH_HOST" "set -e; ln -s '$RELEASE_PATH' '$SERVICE_ROOT/current.next'; mv -Tf '$SERVICE_ROOT/current.next' '$SERVICE_ROOT/current'; sudo systemctl restart '$SERVICE_NAME'"
 

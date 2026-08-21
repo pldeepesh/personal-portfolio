@@ -19,6 +19,8 @@ The systemd unit is `lakshamandeepesh-portfolio.service`. Releases are stored un
 
 The smoke suite checks homepage and blog canonicals, HTTP and `www` redirects, security headers, live-tool indexing, unfinished-tool exclusion from the sitemap, 404 indexing behavior, canonical sitemap/feed hostnames, and the robots sitemap declaration.
 
+The deployment build loads the systemd-style shared environment file with `scripts/run-with-env.mjs`. Values are parsed as data and passed directly to the child process; the file is never evaluated as shell code.
+
 Public form endpoints use bounded, per-process rate-limit storage keyed by Cloudflare's `CF-Connecting-IP` header. Contact, newsletter, and waitlist endpoints allow five submissions per ten minutes per visitor; tool-result delivery allows ten. The store is capped at 5,000 visitor/scope entries and resets on service restart.
 
 ## Rollback
