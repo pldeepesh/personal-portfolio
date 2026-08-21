@@ -13,7 +13,7 @@ export const siteConfig = {
     github: 'https://www.github.com/pldeepesh',
     x: 'https://twitter.com/lakshmandeepesh'
   },
-  calendarUrl: process.env.NEXT_PUBLIC_CALENDAR_URL ?? '/contact/',
+  calendarUrl: process.env.NEXT_PUBLIC_CALENDAR_URL ?? 'https://calendar.app.google/MfnmNJtqAmmwRgqM9',
   contactFormAction: '/api/contact',
   waitlistFormAction: '/api/waitlist',
   newsletterFormAction: '/api/newsletter'

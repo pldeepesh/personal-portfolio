@@ -35,6 +35,8 @@ nvm use 22
 
 Contact, waitlist, and tool result forms submit to internal Next.js route handlers and send email through Resend. Newsletter requests use encrypted, expiring confirmation tokens and add confirmed subscribers to the configured Resend Segment; Resend is the subscriber source of truth, so no local subscriber database is required.
 
+`NEXT_PUBLIC_CALENDAR_URL` is optional. When omitted, strategy-call CTAs use the public Google Appointment Schedule configured in `lib/site-config.ts`.
+
 ## Deploy (Raspberry Pi + Cloudflare Tunnel)
 
 Production runs as `lakshamandeepesh-portfolio.service` on `127.0.0.1:3100`. The Cloudflare Tunnel service publishes the apex and `www` hostnames. Releases live under `/mnt/usbdrive/services/lakshamandeepesh.in/releases`, and `current` is an atomic symlink to the active release.
