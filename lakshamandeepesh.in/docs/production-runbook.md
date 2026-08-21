@@ -17,7 +17,9 @@ The systemd unit is `lakshamandeepesh-portfolio.service`. Releases are stored un
 7. Run `npm run smoke -- https://lakshmanadeepesh.in` against Cloudflare after deployment.
 8. Verify one controlled submission for each production form using an owner-controlled email address.
 
-The smoke suite checks homepage and blog canonicals, HTTP and `www` redirects, live-tool indexing, unfinished-tool exclusion from the sitemap, 404 indexing behavior, canonical sitemap/feed hostnames, and the robots sitemap declaration.
+The smoke suite checks homepage and blog canonicals, HTTP and `www` redirects, security headers, live-tool indexing, unfinished-tool exclusion from the sitemap, 404 indexing behavior, canonical sitemap/feed hostnames, and the robots sitemap declaration.
+
+Public form endpoints use bounded, per-process rate-limit storage keyed by Cloudflare's `CF-Connecting-IP` header. Contact, newsletter, and waitlist endpoints allow five submissions per ten minutes per visitor; tool-result delivery allows ten. The store is capped at 5,000 visitor/scope entries and resets on service restart.
 
 ## Rollback
 
@@ -27,7 +29,6 @@ For a manual rollback, resolve the intended release first, point a temporary sym
 
 ## Decisions requiring owner approval
 
-- HSTS, Content Security Policy, browser security headers, and public rate limits.
 - Core design-system or conversion-flow changes.
 - Production calendar URL and any paid scheduling integration.
 

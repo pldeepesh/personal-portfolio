@@ -2,10 +2,14 @@ import { NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 
 import { configurationErrorResponse, genericErrorResponse, validationErrorResponse } from '@/lib/forms/response';
+import { checkRateLimit, rateLimitResponse } from '@/lib/forms/rate-limit';
 import { isLeadEmailConfigured, sendEmail, sendLeadEmail } from '@/lib/forms/resend';
 import { toolResultSchema } from '@/lib/forms/validation';
 
 export async function POST(request: Request) {
+  const rateLimit = checkRateLimit(request, { limit: 10, scope: 'funnel-result', windowMs: 10 * 60 * 1000 });
+  if (!rateLimit.allowed) return rateLimitResponse(rateLimit);
+
   try {
     const payload = toolResultSchema.parse(await request.json());
 

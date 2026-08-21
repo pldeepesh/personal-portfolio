@@ -100,6 +100,22 @@ function expectExcludes(label, value, unexpected) {
 const home = await request('/');
 expectIncludes('homepage canonical', home.body, `rel="canonical" href="${canonicalOrigin}/"`);
 expectExcludes('homepage hostname', home.body, 'https://www.lakshmanadeepesh.in');
+if (home.response) {
+  const expectedHeaders = {
+    'content-security-policy': "base-uri 'self'; frame-ancestors 'none'; object-src 'none'; form-action 'self'",
+    'permissions-policy': 'camera=(), microphone=(), geolocation=()',
+    'referrer-policy': 'strict-origin-when-cross-origin',
+    'strict-transport-security': 'max-age=31536000',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'DENY'
+  };
+
+  for (const [header, expected] of Object.entries(expectedHeaders)) {
+    if (home.response.headers.get(header) !== expected) {
+      fail(`security header ${header}`, `expected ${JSON.stringify(expected)}, received ${JSON.stringify(home.response.headers.get(header))}`);
+    }
+  }
+}
 
 const blog = await request('/blog/');
 expectIncludes('blog canonical', blog.body, `rel="canonical" href="${canonicalOrigin}/blog/"`);

@@ -4,11 +4,15 @@ import { ZodError } from 'zod';
 import { formDataToObject } from '@/lib/forms/request';
 import { configurationErrorResponse, genericErrorResponse, validationErrorResponse } from '@/lib/forms/response';
 import { createNewsletterConfirmationToken, isNewsletterConfigured } from '@/lib/forms/newsletter';
+import { checkRateLimit, rateLimitResponse } from '@/lib/forms/rate-limit';
 import { sendEmail } from '@/lib/forms/resend';
 import { newsletterFormSchema } from '@/lib/forms/validation';
 import { siteConfig } from '@/lib/site-config';
 
 export async function POST(request: Request) {
+  const rateLimit = checkRateLimit(request, { limit: 5, scope: 'newsletter', windowMs: 10 * 60 * 1000 });
+  if (!rateLimit.allowed) return rateLimitResponse(rateLimit);
+
   try {
     const payload = newsletterFormSchema.parse(await formDataToObject(request));
 

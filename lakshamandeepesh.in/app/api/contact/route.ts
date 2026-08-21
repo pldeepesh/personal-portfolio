@@ -2,11 +2,15 @@ import { NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 
 import { formDataToObject } from '@/lib/forms/request';
+import { checkRateLimit, rateLimitResponse } from '@/lib/forms/rate-limit';
 import { configurationErrorResponse, genericErrorResponse, validationErrorResponse } from '@/lib/forms/response';
 import { isLeadEmailConfigured, sendLeadEmail } from '@/lib/forms/resend';
 import { contactFormSchema } from '@/lib/forms/validation';
 
 export async function POST(request: Request) {
+  const rateLimit = checkRateLimit(request, { limit: 5, scope: 'contact', windowMs: 10 * 60 * 1000 });
+  if (!rateLimit.allowed) return rateLimitResponse(rateLimit);
+
   try {
     const payload = contactFormSchema.parse(await formDataToObject(request));
 
